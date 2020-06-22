@@ -22,6 +22,11 @@
    <center>
       <TabPane prefHeight="650.0" prefWidth="650.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
+        <Tab text="Pizza">
+               <content>
+                   <fx:include source="ManagerPizzaTabView.fxml" fx:id="PizzaTab"/>
+               </content>
+          </Tab>
           <Tab text="Products">
                <content>
                    <fx:include source="ManagerProductsTabView.fxml" fx:id="ProductsTab"/>

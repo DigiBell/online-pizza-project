@@ -11,10 +11,10 @@
    <center>
           <TableView fx:id="productsTable" layoutY="15.0" prefHeight="500.0" prefWidth="650.0">
               <columns>
-                  <TableColumn fx:id="products_product_id_column" prefWidth="100.0" text="Product ID" />
+                  <!-- <TableColumn fx:id="products_product_id_column" prefWidth="100.0" text="Product ID" /> -->
                   <TableColumn fx:id="products_category_column" prefWidth="100.0" text="Category" />
                   <TableColumn fx:id="products_name_column" prefWidth="150.0" text="Name" />
-                  <TableColumn fx:id="products_size_column" prefWidth="100.0" text="Size" />
+                  <!-- <TableColumn fx:id="products_size_column" prefWidth="100.0" text="Size" /> -->
                   <TableColumn fx:id="products_quantity_column" prefWidth="100.0" text="Quantity" />
                   <TableColumn fx:id="products_unit_price_column" prefWidth="100.0" text="Price (SEK)" />
               </columns>
