@@ -1,0 +1,203 @@
+01 DEN ENKLA
+Ost, tomatsås – och bara det! 
+(Cheese and tomato sauce – and nothing else!)
+49
+79
+119
+139
+02 SVINGOD
+Ost, tomatsås, skinka och champinjoner 
+(Cheese, tomato sauce, ham and mushroom)
+59
+99
+155
+139
+03 DRØMMEN
+Ost, tomatsås, köttfärs och paprika
+(Cheese, tomato sauce, minced meat and sweet pepper)
+59
+99
+155
+139
+04 PIZZABAKEREN SPECIAL
+Ost, tomatsås, köttfärs,lök och bacon 
+(Cheese, tomato sauce, minced meat, onion and bacon)
+65
+105
+159
+139
+05 HAWAII 5-0
+Ost, tomatsås, köttfärs, lök och ananas 
+(Cheese, tomato sauce, minced meat, onion and pineapple)
+65
+105
+159
+139
+06 MIX
+Ost, tomatsås, pepperoni, lök och paprika 
+(Cheese, tomato sauce, pepperoni, onion and sweet pepper)
+65
+105
+159
+139
+07 EL MEXICO
+Ost, tomatsås, marinerad kyckling, marinerad biff, nachoschips, vitlök, majs och chili 
+(Cheese, tomato sauce, strips of marinated chicken, marinated beef, nacho chips, garlic, sweet corn and chili)
+69
+115
+165
+139
+08 BIFFEN
+Ost, tomatsås, marinerad biff i strimlor, bacon och vitlök 
+(Cheese, tomato sauce, stripe of marinated beef, bacon and garlic)
+69
+115
+165
+139
+09 DEN MARINERADE
+Ost, tomatsås, marinerad biff i strimlor, champinjoner och lök 
+(Cheese, tomato sauce, strips of marinated beef, onion and mushroom)
+65
+105
+159
+139
+10 PEPPARBIFFEN
+Ost, tomatsås, pepparbiff i strimlor, champinjoner, lök och paprika 
+(Cheese, tomato sauce, strips of pepper beef, onion, mushroom and sweet pepper)
+69
+115
+165
+139
+11 FLAMMAN
+Ost, tacosås, köttfärs, nachochips och jalapeños 
+(Cheese, taco sauce, minced meat, nacho chips and jalapeños)
+65
+105
+159
+139
+12 TACOKYCKLINGEN
+Ost, tacosås, marinerad kyckling, nachoschips och jalapeños 
+(Cheese, taco sauce, marinated chicken, nacho chips and jalapeños)
+69
+115
+165
+139
+13 KOCKENS KYCKLING
+Ost, tomatsås, marinerad kyckling, lök, majs och champinjoner 
+(Cheese, tomato sauce, marinated chicken, onion, sweet corn and mushroom)
+65
+105
+159
+139
+14 KOCKENS FAVORIT
+Ost, tomatsås köttfärs, baconskivor och ananas 
+(Cheese, tomato sauce, minced meat, luxury bacon and pineapple)
+65
+105
+159
+139
+15 GNISTAN
+Ost, tomatsås, köttfärs, lök, vitlök och jalapeños 
+(Cheese, tomato sauce, minced meat, garlic and jalapeños)
+65
+105
+159
+139
+16 KYCKLING DE LUXE
+Ost, tomatsås, marinerad kyckling, baconskivor, lök och paprika 
+(Cheese, tomato sauce, marinated chicken, luxury bacon, onion and sweet pepper)
+69
+115
+165
+139
+17 PESTOKYCKLINGEN
+Ost, tomatsås, marinerad kyckling, chili, pesto och tomatskivor
+(Cheese, tomato sauce, marinated chicken, chilipepper, pesto and sliced tomato)
+65
+105
+159
+139
+18 VEGETARIANEN
+Ost, tomatsås, ananas, champinjoner, lök, majs och paprika
+(Cheese, tomato sauce, pineapple, mushrooms, onion, sweet corn and sweet pepper)
+59
+99
+155
+139
+19 KEBABEN
+Ost, tacosås,majs, kebabkött nöt, majs, rödlök, jalapeños  
+(Cheese, tacosauce, kebabmeat beef,red onion, sweet corn and jalapeños)
+69
+115
+165
+139
+20 FARMEN
+Ost, tomatsås, skinka och bacon 
+(Cheese, tomato sauce, ham and bacon)
+65
+105
+159
+139
+21 MR.X
+Ost, tomatsås, köttfärs, lök, pepperoni och ananas 
+(Cheese, tomato sauce, minced meat, pepperoni, onion and pineapple)
+65
+105
+159
+139
+22 CHORIZO SPECIAL
+Ost, tomatsås, chorizo, marinerad biff och lök 
+(Cheese, tomato sauce, chorizo, marinated beef and onion)
+69
+115
+165
+139
+23 DUBBELDÄCKAREN
+Ost, tomatsås, skinka, köttfärs och oregano 
+(Cheese, tomato sauce, ham, minced meat and oregano)
+65
+105
+159
+139
+24 HOT HAWAII KYCKLING
+Ost, tomatsås, hot marinerad kyckling, bacon och ananas 
+(Cheese, tomato sauce, hot and marinated chicken, bacon and pineapple)
+65
+105
+159
+139
+25 CHORIZON
+Ost, tomatsås, chorizo, pesto, oregano och tomater 
+(Cheese, tomato sauce, chorizo, pesto, oregano and tomato)
+65
+105
+159
+139
+26 MOBY DICK
+Ost, tomatsås, lök och tonfisk
+(Cheese, tomato sauce, onion and tuna)
+65
+105
+159
+139
+27 GREKISK SPECIAL
+Ost, tomatsås,oliver,paprika,feferoni och fetaost
+(Cheese,tomato sauce, olives,sweet pepper, feferoni and feta cheese)
+65
+105
+159
+139
+28 KEMPEGOD
+Ost, tomatsås, pepparbiff, pepperoni och paprika
+(Cheese, tomato sauce, pepper beef, pepperoni and sweet peppers)
+65
+105
+159
+139
+29 BBQn
+Ost, tomatsås, fläskkött, bacontärningar, majs och rödlök
+(Cheese, tomato sauce, pork, baconcubes, sweet corn and onion)
+69
+115
+165
+139

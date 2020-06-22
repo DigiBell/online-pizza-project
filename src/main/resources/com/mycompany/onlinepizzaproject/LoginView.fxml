@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="main_frame_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="700.0" prefWidth="900.0"
+      style="-fx-background-color: floralwhite ;"
+      xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.mycompany.onlinepizzaproject.LoginController">
+   <children>
+      <GridPane fx:id="grid_pane" layoutX="263.0" layoutY="251.0" prefHeight="98.0" prefWidth="374.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="NEVER" maxWidth="155.9999755859375" minWidth="81.599951171875" prefWidth="81.599951171875" />
+          <ColumnConstraints hgrow="NEVER" maxWidth="319.200048828125" minWidth="244.8000244140625" prefWidth="319.200048828125" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+        </rowConstraints>
+         <children>
+            <Label text="Login" />
+            <Label text="Password" GridPane.rowIndex="1" />
+            <PasswordField fx:id="text_password" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="text_email" promptText="email" GridPane.columnIndex="1" />
+            <Button fx:id="button_login_user" mnemonicParsing="false" onAction="#login_into_system" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <Button fx:id="create_new_account_button" layoutX="530.0" layoutY="399.0" mnemonicParsing="false" onAction="#changeToCreateAccountView" text="Create new account" />
+      <Label alignment="CENTER" layoutX="379.0" layoutY="110.0" text="Online Pizza" textAlignment="CENTER" textFill="#f09c0b">
+         <font>
+            <Font name="Arial Bold Italic" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

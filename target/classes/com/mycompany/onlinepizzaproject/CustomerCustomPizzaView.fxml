@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.onlinepizzaproject.CustomerCustomPizzaController">
+   <center>
+      <TextArea fx:id="comment_text_area" prefHeight="150.0" prefWidth="150.0" promptText="Add comment ..." wrapText="true" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </BorderPane.margin></TextArea>
+   </center>
+   <top>
+      <GridPane prefHeight="60.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints maxWidth="423.2000366210938" minWidth="264.800048828125" prefWidth="291.99998779296874" />
+          <ColumnConstraints maxWidth="295.199951171875" minWidth="116.79996337890623" prefWidth="168.80001220703122" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints prefHeight="30.0" />
+          <RowConstraints prefHeight="30.0" />
+        </rowConstraints>
+         <children>
+            <Label text="Extra Ost/kött/kyckling (Cheese/meat/chicken)" />
+            <Label text="Extra Övrigt (Other)" GridPane.rowIndex="1" />
+            <CheckBox fx:id="add_extra_cmc_checkbox" mnemonicParsing="false" GridPane.columnIndex="1" />
+            <CheckBox fx:id="add_extra_other_checkbox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </top>
+   <bottom>
+      <Button fx:id="add_button" mnemonicParsing="false" onAction="#confirm" prefHeight="30.0" prefWidth="100.0" text="Confirm" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+</BorderPane>
