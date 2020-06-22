@@ -26,7 +26,7 @@ public class CustomerHomeController {
     @FXML private MainController mainController;
 
     @FXML private Label welcome_lable;
-    @FXML private ListView cart_list_view;
+    @FXML private ListView<String> cart_list_view;
     @FXML private TableView<Product> productTable;
     @FXML private TableColumn<Product, String> category_column;
     @FXML private TableColumn<Product, String> name_column;
@@ -107,7 +107,6 @@ public class CustomerHomeController {
     /**
      * Adds a line with product details along with the total price to cart listView.
      */
-    @SuppressWarnings("unchecked")
     private void addLineToCart(){
         String cartLine = mainController.getCartLine();
         System.out.println("cartline:" + cartLine);
@@ -178,7 +177,6 @@ public class CustomerHomeController {
      * Empties cart and set total price to 0.
      * @param event that triggered method call.
      */
-    @SuppressWarnings("unchecked")
     @FXML
     private void cancelOrder(ActionEvent event){ //cancel button
         cart_list_view.getItems().clear();

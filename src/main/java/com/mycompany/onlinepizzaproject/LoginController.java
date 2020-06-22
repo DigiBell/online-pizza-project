@@ -73,7 +73,7 @@ public class LoginController  {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateAccountView.fxml"));
         root = loader.load();
         createAccountController = loader.getController();
-        stage.setScene(new Scene(root, mainController.MAIN_STAGE_WIDTH, mainController.MAIN_STAGE_HEIGHT));
+        stage.setScene(new Scene(root, MainController.MAIN_STAGE_WIDTH, MainController.MAIN_STAGE_HEIGHT));
         root.requestFocus();
         stage.show();
     }
@@ -86,7 +86,7 @@ public class LoginController  {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerHomeView.fxml"));
         root = loader.load();
         customerHomeController = loader.getController();
-        stage.setScene(new Scene(root, mainController.MAIN_STAGE_WIDTH, mainController.MAIN_STAGE_HEIGHT));
+        stage.setScene(new Scene(root, MainController.MAIN_STAGE_WIDTH, MainController.MAIN_STAGE_HEIGHT));
         root.requestFocus();
         stage.show();
     }
@@ -99,7 +99,7 @@ public class LoginController  {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ManagerHomeView.fxml"));
         root = loader.load();
         managerHomeController = loader.getController();
-        stage.setScene(new Scene(root, mainController.MAIN_STAGE_WIDTH, mainController.MAIN_STAGE_HEIGHT));
+        stage.setScene(new Scene(root, MainController.MAIN_STAGE_WIDTH, MainController.MAIN_STAGE_HEIGHT));
         root.requestFocus();
         stage.show();
     }

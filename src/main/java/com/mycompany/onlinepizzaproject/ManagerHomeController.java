@@ -13,7 +13,6 @@ public class ManagerHomeController {
     @FXML private MainController mainController;
     @FXML private LoginController loginController;
     @FXML private Label manager_welcome_label;
-    private Stage stage;
 
     @FXML
     private void initialize(){
@@ -29,7 +28,7 @@ public class ManagerHomeController {
      */
     @FXML
     private void createEmployeeAccount(ActionEvent event) throws Exception {
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        //Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         changeToCreateEmployeeAccount();
     }
 
@@ -44,7 +43,7 @@ public class ManagerHomeController {
         mainController.clearDataManager();
         Parent root = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root, mainController.MAIN_STAGE_WIDTH, mainController.MAIN_STAGE_HEIGHT));
+        stage.setScene(new Scene(root, MainController.MAIN_STAGE_WIDTH, MainController.MAIN_STAGE_HEIGHT));
         root.requestFocus();
         stage.show();
     }

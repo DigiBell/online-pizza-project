@@ -1,5 +1,5 @@
 package com.mycompany.onlinepizzaproject;
 
-public class mmm {
+public class ManagerAddPizzaController {
 
 }

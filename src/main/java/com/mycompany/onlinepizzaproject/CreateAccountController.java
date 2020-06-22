@@ -95,7 +95,7 @@ public class CreateAccountController {
         loader = new FXMLLoader(getClass().getResource("LoginView.fxml"));
         Parent root = loader.load();
         loginController = loader.getController();
-        stage.setScene(new Scene(root, mainController.MAIN_STAGE_WIDTH, mainController.MAIN_STAGE_HEIGHT));
+        stage.setScene(new Scene(root, MainController.MAIN_STAGE_WIDTH, MainController.MAIN_STAGE_HEIGHT));
         root.requestFocus();
         stage.show();
     }

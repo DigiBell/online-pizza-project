@@ -41,8 +41,24 @@ public class ManagerProductsTabController {
     }
 
     @FXML
-    private void showDetails(ActionEvent event){
-        //show choosen item as text in a popup window
-        //or add a listView on the side
+    private void addProduct(ActionEvent event){
+        //show new window
+        
+    }
+    
+    @FXML
+    private void deleteProduct(ActionEvent event){
+    	Product productSelected = productsTable.getSelectionModel().getSelectedItem();
+    	System.out.println("Selected product to delete :" + productSelected.toString());
+    	mainController.deleteProductFromDatabase(productSelected);
+    	//Delete product from database
+    }
+    
+    @FXML
+    private void editProduct(ActionEvent event){
+    	Product productSelected = productsTable.getSelectionModel().getSelectedItem();
+    	System.out.println("Selected product to edit :" + productSelected.toString());
+        //show new window
+       
     }
 }

@@ -4,7 +4,6 @@ import com.mycompany.onlinepizzaproject.Model.Sale;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -28,7 +27,7 @@ public class ManagerSalesTabController {
     @FXML private DatePicker sales_to_date_picker;
 
     private Alert alert;
-    private Stage stage;
+   
 
     @FXML
     private void initialize(){
@@ -63,7 +62,7 @@ public class ManagerSalesTabController {
         if(dateFrom != null && dateTo != null){
             mainController.getTopSalesFromDatabase(Date.from(dateFrom.atStartOfDay(ZoneId.systemDefault()).toInstant()),
                     Date.from(dateTo.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            //Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             changeToTopProductSales();
         }else{
             alert = new Alert(Alert.AlertType.WARNING, "Choose from and to date.", ButtonType.OK);

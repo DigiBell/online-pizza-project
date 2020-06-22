@@ -12,7 +12,7 @@ import java.util.List;
 public class ManagerTopProductSalesController {
     @FXML
     private MainController mainController;
-    @FXML private ListView manager_top_sales_listview;
+    @FXML private ListView<String> manager_top_sales_listview;
 
     @FXML private void initialize(){
         mainController = MainController.getMainControllerInstance();

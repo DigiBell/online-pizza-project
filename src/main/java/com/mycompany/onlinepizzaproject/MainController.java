@@ -52,14 +52,16 @@ public class MainController {
     private List<Product> productList = new ArrayList<>(); //products from database, both pizza and non-pizza
     private List<Document> topSales = new ArrayList<>();
     private ObservableList<String> topSalesLineList;
+    private Product productToAddToDatabase; // new product
+    private Product productToChange; // product with new data but same id
 
 
-    private final static MainController mainControllerInstance = new MainController();
+    private final static MainController MAIN_CONTROLLER_INSTANCE = new MainController();
     private MongoDBController mongoDBController = MongoDBController.getMongoDBControllerInstance();
 
 
     public static MainController getMainControllerInstance() {
-        return mainControllerInstance;
+        return MAIN_CONTROLLER_INSTANCE;
     }
 
     ////////////////////////////////////////////----GENERATE METHODS----///////////////////////////////////
@@ -373,6 +375,17 @@ public class MainController {
         }
         this.productListCustomer = newProducts;
     }
+    
+    public void addProductToDatabase(Product product) {
+    	//add product to database
+    }
+    
+    public void deleteProductFromDatabase(Product product) {
+    	//delete product from database
+    }
+    public void editProductInDatabase(Product product) {
+    	//edit product in database
+    }
 
     public void getIngredientsFromDatabase(){
         this.ingredientList = mongoDBController.getIngredients();
@@ -424,143 +437,199 @@ public class MainController {
         getProductList().clear();
     }
 
+	public Random getRand() {
+		return rand;
+	}
+
+	public void setRand(Random rand) {
+		this.rand = rand;
+	}
+
+	public List<Product> getProductListToDatabase() {
+		return productListToDatabase;
+	}
+
+	public void setProductListToDatabase(List<Product> productListToDatabase) {
+		this.productListToDatabase = productListToDatabase;
+	}
+
+	public Account getLoginAccount() {
+		return loginAccount;
+	}
+
+	public void setLoginAccount(Account loginAccount) {
+		this.loginAccount = loginAccount;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public Product getProductSelected() {
+		return productSelected;
+	}
+
+	public void setProductSelected(Product productSelected) {
+		this.productSelected = productSelected;
+	}
+
+	public OrderLine getOrderLine() {
+		return orderLine;
+	}
+
+	public void setOrderLine(OrderLine orderLine) {
+		this.orderLine = orderLine;
+	}
+
+	public String getCartLine() {
+		return cartLine;
+	}
+
+	public void setCartLine(String cartLine) {
+		this.cartLine = cartLine;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public List<OrderLine> getOrderLineList() {
+		return orderLineList;
+	}
+
+	public void setOrderLineList(List<OrderLine> orderLineList) {
+		this.orderLineList = orderLineList;
+	}
+
+	public List<Product> getProductListCustomer() {
+		return productListCustomer;
+	}
+
+	public void setProductListCustomer(List<Product> productListCustomer) {
+		this.productListCustomer = productListCustomer;
+	}
+
+	public List<Product> getProductsExtraCMC() {
+		return productsExtraCMC;
+	}
+
+	public void setProductsExtraCMC(List<Product> productsExtraCMC) {
+		this.productsExtraCMC = productsExtraCMC;
+	}
+
+	public List<Product> getProductsExtraOther() {
+		return productsExtraOther;
+	}
+
+	public void setProductsExtraOther(List<Product> productsExtraOther) {
+		this.productsExtraOther = productsExtraOther;
+	}
+
+	public List<Sale> getSaleListToAdd() {
+		return saleListToAdd;
+	}
+
+	public void setSaleListToAdd(List<Sale> saleListToAdd) {
+		this.saleListToAdd = saleListToAdd;
+	}
+
+	public ObservableList<String> getCartLineList() {
+		return cartLineList;
+	}
+
+	public void setCartLineList(ObservableList<String> cartLineList) {
+		this.cartLineList = cartLineList;
+	}
+
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
+
+	public List<Sale> getSaleList() {
+		return saleList;
+	}
+
+	public void setSaleList(List<Sale> saleList) {
+		this.saleList = saleList;
+	}
+
+	public List<Ingredient> getIngredientList() {
+		return ingredientList;
+	}
+
+	public void setIngredientList(List<Ingredient> ingredientList) {
+		this.ingredientList = ingredientList;
+	}
+
+	public Ingredient getIngredientToChange() {
+		return ingredientToChange;
+	}
+
+	public void setIngredientToChange(Ingredient ingredientToChange) {
+		this.ingredientToChange = ingredientToChange;
+	}
+
+	public List<Product> getProductList() {
+		return productList;
+	}
+
+	public void setProductList(List<Product> productList) {
+		this.productList = productList;
+	}
+
+	public List<Document> getTopSales() {
+		return topSales;
+	}
+
+	public void setTopSales(List<Document> topSales) {
+		this.topSales = topSales;
+	}
+
+	public ObservableList<String> getTopSalesLineList() {
+		return topSalesLineList;
+	}
+
+	public void setTopSalesLineList(ObservableList<String> topSalesLineList) {
+		this.topSalesLineList = topSalesLineList;
+	}
+
+	public Product getProductToAddToDatabase() {
+		return productToAddToDatabase;
+	}
+
+	public void setProductToAddToDatabase(Product productToAddToDatabase) {
+		this.productToAddToDatabase = productToAddToDatabase;
+	}
+
+	public Product getProductToChange() {
+		return productToChange;
+	}
+
+	public void setProductToChange(Product productToChange) {
+		this.productToChange = productToChange;
+	}
+
+	public MongoDBController getMongoDBController() {
+		return mongoDBController;
+	}
+
+	public void setMongoDBController(MongoDBController mongoDBController) {
+		this.mongoDBController = mongoDBController;
+	}
+
     //////////////////////////////////////////----GETTERS & SETTERS----//////////////////////////////////
 
-    public Account getLoginAccount() {
-        return loginAccount;
-    }
-
-    public void setLoginAccount(Account loginAccount) {
-        this.loginAccount = loginAccount;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Product getProductSelected() {
-        System.out.println("\nget product selected");
-        return productSelected; }
-
-    public void setProductSelected(Product productSelected) {
-        System.out.println("\nset product selected");
-        this.productSelected = productSelected; }
-
-    public OrderLine getOrderLine() { return orderLine; }
-
-    public void setOrderLine(OrderLine orderLine) { this.orderLine = orderLine; }
-
-    public List<OrderLine> getOrderLineList() {
-        return orderLineList;
-    }
-
-    public void setOrderLineList(List<OrderLine> orderLineList) {
-        this.orderLineList = orderLineList;
-    }
-
-    public List<Product> getProductListCustomer() { return productListCustomer; }
-
-    public void setProductListCustomer(List<Product> productListCustomer) { this.productListCustomer = productListCustomer; }
-
-    public List<Product> getProductsExtraCMC() {
-        return productsExtraCMC;
-    }
-
-    public void setProductsExtraCMC(List<Product> productsExtraCMC) {
-        this.productsExtraCMC = productsExtraCMC;
-    }
-
-    public List<Product> getProductsExtraOther() {
-        return productsExtraOther;
-    }
-
-    public void setProductsExtraOther(List<Product> productsExtraOther) {
-        this.productsExtraOther = productsExtraOther;
-    }
-
-    public List<Sale> getSaleListToAdd() {
-        return saleListToAdd;
-    }
-
-    public void setSaleListToAdd(List<Sale> saleListToAdd) {
-        this.saleListToAdd = saleListToAdd;
-    }
-
-    public Double getTotalPrice() {
-        System.out.println("\ngetTotalPrice:" + totalPrice);
-        return totalPrice; }
-
-    public void setTotalPrice(Double totalPrice) {
-
-        System.out.println("\nsetTotalPrice:" + totalPrice);
-        this.totalPrice = totalPrice;
-    }
-
-    public List<Order> getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
-    }
-
-    public List<Sale> getSaleList() {
-        return saleList;
-    }
-
-    public void setSaleList(List<Sale> saleList) {
-        this.saleList = saleList;
-    }
-
-    public List<Ingredient> getIngredientList() {
-        return ingredientList;
-    }
-
-    public void setIngredientList(List<Ingredient> ingredients) {
-        this.ingredientList = ingredients;
-    }
-
-    public Ingredient getIngredientToChange() { return ingredientToChange; }
-
-    public void setIngredientToChange(Ingredient ingredientToChange) { this.ingredientToChange = ingredientToChange; }
-
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList) { this.productList.addAll(productList); }
-
-    public List<Document> getTopSales() {
-        return topSales;
-    }
-
-    public void setTopSales(List<Document> topSales) {
-        this.topSales = topSales;
-    }
-
-    public ObservableList<String> getTopSalesLineList() {
-        return topSalesLineList;
-    }
-
-    public void setTopSalesLineList(ObservableList<String> topSalesLineList) {
-        this.topSalesLineList = topSalesLineList;
-    }
-
-    public String getCartLine() { return cartLine; }
-
-    public void setCartLine(String cartLine) { this.cartLine = cartLine; }
-
-    public ObservableList<String> getCartLineList() {
-        System.out.println("getCartLineList");
-        return cartLineList;
-    }
-
-    public void setCartLineList(ObservableList<String> cartLineList) {
-        System.out.println("getCartLineList");
-        this.cartLineList = cartLineList;
-    }
+    
 }

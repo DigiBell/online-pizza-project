@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class ManagerIngredientEditController {
     @FXML private MainController mainController;
-    @FXML private ListView ingredient_edit_list_view;
+    @FXML private ListView<String> ingredient_edit_list_view;
     @FXML private TextField ingredient_edit_quantity_field;
 
 
