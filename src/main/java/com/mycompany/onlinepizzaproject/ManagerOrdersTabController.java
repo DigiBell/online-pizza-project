@@ -50,4 +50,12 @@ public class ManagerOrdersTabController {
         }
         ordersTable.getItems().addAll(mainController.getOrderList());
     }
+    
+    @FXML
+    private void markAsDone(ActionEvent event){
+    	Order order = ordersTable.getSelectionModel().getSelectedItem();
+    	if(order != null) {
+    		//change order status
+    	}
+    }
 }
