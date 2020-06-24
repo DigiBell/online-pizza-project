@@ -1,5 +1,9 @@
 package com.mycompany.onlinepizzaproject;
 
+import com.mycompany.onlinepizzaproject.backend.API;
+import com.mycompany.onlinepizzaproject.backend.User;
+import com.mycompany.onlinepizzaproject.backend.User.AccessLevel;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,24 +45,58 @@ public class LoginController  {
     @FXML
     private void login_into_system(ActionEvent event) throws Exception {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        String userAccessLevel = checkUser(text_email.getText(),text_password.getText());
-        System.out.println( "" + userAccessLevel);
-
-        if(userAccessLevel.equals(MainController.CUSTOMER_ACCESS_LEVEL)){
-            changeToCustomerHomeView();
-        }else if(userAccessLevel.equals(MainController.EMPLOYEE_ACCESS_LEVEL)){
-
-        }else if(userAccessLevel.equals(MainController.MANAGER_ACCESS_LEVEL)){
-            alert = new Alert(Alert.AlertType.ERROR, "Choose login way", ButtonType.OK, ButtonType.CANCEL );
-            ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Manager");
-            ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Customer");
+        
+        try {
+        	User user = API.loginUser(text_email.getText(), text_password.getText());
+        	
+        	mainController.setLoginAccount(user);
+        	
+        	if(user.getAccessLevel() == AccessLevel.Customer) {
+        		changeToCustomerHomeView();
+        	} else if(user.getAccessLevel() == AccessLevel.Employee) {
+        		
+        	} else if(user.getAccessLevel() == AccessLevel.Manager) {
+                alert = new Alert(Alert.AlertType.CONFIRMATION, "Choose login way", ButtonType.OK, ButtonType.CANCEL );
+                ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Manager");
+                ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Customer");
+                alert.showAndWait();
+                if (alert.getResult() == ButtonType.OK) {
+                    changeToManagerHomeView();
+                }else{
+                    changeToCustomerHomeView();
+                }
+        	}
+        	
+		} catch (Exception e) {
+			e.printStackTrace();
+			alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) {
-                changeToManagerHomeView();
-            }else{
-                changeToCustomerHomeView();
+                main_frame_pane.requestFocus();
             }
-        }
+		}
+        
+        
+        
+//        String userAccessLevel = checkUser(text_email.getText(),text_password.getText());
+//        System.out.println( "" + userAccessLevel);
+//
+//        if(userAccessLevel.equals(MainController.CUSTOMER_ACCESS_LEVEL)){
+//            changeToCustomerHomeView();
+//        }else if(userAccessLevel.equals(MainController.EMPLOYEE_ACCESS_LEVEL)){
+//
+//        }else if(userAccessLevel.equals(MainController.MANAGER_ACCESS_LEVEL)){
+//            alert = new Alert(Alert.AlertType.ERROR, "Choose login way", ButtonType.OK, ButtonType.CANCEL );
+//            ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Manager");
+//            ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Customer");
+//            alert.showAndWait();
+//            if (alert.getResult() == ButtonType.OK) {
+//                changeToManagerHomeView();
+//            }else{
+//                changeToCustomerHomeView();
+//            }
+//        }
+        
     }
 
     /**
@@ -115,26 +153,26 @@ public class LoginController  {
      * @param password from input.
      * @return user access level, 1 for customer, 2 for employee, 3 for manager, 0 on fail.
      */
-    private String checkUser(String email, String password){
-        if(!email.isEmpty() && !password.isEmpty()){
-            if(!mainController.findAccountByEmailPassword(email, password)){ //         -----//CALL TO DATABASE//-----
-                alert = new Alert(Alert.AlertType.ERROR, "Email or password is incorrect.", ButtonType.OK);
-                alert.showAndWait();
-                if (alert.getResult() == ButtonType.OK) {
-                    main_frame_pane.requestFocus();
-                    text_email.clear();
-                    text_password.clear();
-                }
-            }else{
-                return mainController.getLoginAccount().getAccess();
-            }
-        }else{
-            alert = new Alert(Alert.AlertType.ERROR, "Fields can't be empty.", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
-                main_frame_pane.requestFocus();
-            }
-        }
-        return "0"; // account does not exist
-    }
+//    private String checkUser(String email, String password){
+//        if(!email.isEmpty() && !password.isEmpty()){
+//            if(!mainController.findAccountByEmailPassword(email, password)){ //         -----//CALL TO DATABASE//-----
+//                alert = new Alert(Alert.AlertType.ERROR, "Email or password is incorrect.", ButtonType.OK);
+//                alert.showAndWait();
+//                if (alert.getResult() == ButtonType.OK) {
+//                    main_frame_pane.requestFocus();
+//                    text_email.clear();
+//                    text_password.clear();
+//                }
+//            }else{
+//                return mainController.getLoginAccount().getAccess();
+//            }
+//        }else{
+//            alert = new Alert(Alert.AlertType.ERROR, "Fields can't be empty.", ButtonType.OK);
+//            alert.showAndWait();
+//            if (alert.getResult() == ButtonType.OK) {
+//                main_frame_pane.requestFocus();
+//            }
+//        }
+//        return "0"; // account does not exist
+//    }
 }

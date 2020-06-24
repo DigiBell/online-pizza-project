@@ -1,6 +1,8 @@
 package com.mycompany.onlinepizzaproject;
 
 import com.mycompany.onlinepizzaproject.Model.Account;
+import com.mycompany.onlinepizzaproject.backend.API;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -33,27 +35,50 @@ public class CreateEmployeeAccountController {
     @FXML
     private void createNewEmployeeAccount(ActionEvent event){
         if(getUserInput()){
-            if(mainController.findAccountByEmail(newAccount.getEmail())){
-                alert = new Alert(Alert.AlertType.ERROR, "Account with this email already exist", ButtonType.OK);
-                alert.showAndWait();
-                if (alert.getResult() == ButtonType.OK) {
-                    create_email_field.clear();
-                    create_email_field.requestFocus();
-                }
-            }else{
-                newAccount.setAccess(MainController.EMPLOYEE_ACCESS_LEVEL);
-                if(mainController.sendAccountToDatabase(newAccount)){
-                    alert = new Alert(Alert.AlertType.CONFIRMATION, "Account has been successfully created", ButtonType.OK);
-                    alert.showAndWait();
-                    if (alert.getResult() == ButtonType.OK) {
-                        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                        stage.close();
-                    }
-                }else{
-                    alert = new Alert(Alert.AlertType.ERROR, "Account could not be created", ButtonType.OK);
-                    alert.showAndWait();
-                }
-            }
+        	
+        	try {
+        		String result = API.createEmployee(newAccount.getEmail(), newAccount.getPassword(), newAccount.getFirstName(), newAccount.getLastName(), newAccount.getCountry(), newAccount.getCity(), 
+            			newAccount.getStreet(), newAccount.getPostCode(), newAccount.getPhoneNumber());
+        		
+        		if(result != null) {
+        			alert = new Alert(Alert.AlertType.CONFIRMATION, "Account has been successfully created", ButtonType.OK);
+        			alert.showAndWait();
+        			if (alert.getResult() == ButtonType.OK) {
+        				 stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        				 stage.close();
+        			}
+        		} else {
+        			alert = new Alert(Alert.AlertType.ERROR, "Account could not be created", ButtonType.OK);
+        			alert.showAndWait();
+        		}
+        		
+			} catch (Exception e) {
+				 alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+				 alert.showAndWait();
+			}
+        	
+//            if(mainController.findAccountByEmail(newAccount.getEmail())){
+//                alert = new Alert(Alert.AlertType.ERROR, "Account with this email already exist", ButtonType.OK);
+//                alert.showAndWait();
+//                if (alert.getResult() == ButtonType.OK) {
+//                    create_email_field.clear();
+//                    create_email_field.requestFocus();
+//                }
+//            }else{
+//                newAccount.setAccess(MainController.EMPLOYEE_ACCESS_LEVEL);
+//                if(mainController.sendAccountToDatabase(newAccount)){
+//                    alert = new Alert(Alert.AlertType.CONFIRMATION, "Account has been successfully created", ButtonType.OK);
+//                    alert.showAndWait();
+//                    if (alert.getResult() == ButtonType.OK) {
+//                        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+//                        stage.close();
+//                    }
+//                }else{
+//                    alert = new Alert(Alert.AlertType.ERROR, "Account could not be created", ButtonType.OK);
+//                    alert.showAndWait();
+//                }
+//            }
+            
         }else{
             alert = new Alert(Alert.AlertType.WARNING, "All fields must be filled.", ButtonType.OK);
             alert.showAndWait();

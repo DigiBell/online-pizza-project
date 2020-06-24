@@ -50,7 +50,7 @@ public class ManagerProductsTabController {
     private void deleteProduct(ActionEvent event){
     	Product productSelected = productsTable.getSelectionModel().getSelectedItem();
     	System.out.println("Selected product to delete :" + productSelected.toString());
-    	mainController.deleteProductFromDatabase(productSelected);
+    	//mainController.deleteProductFromDatabase(productSelected);
     	//Delete product from database
     }
     

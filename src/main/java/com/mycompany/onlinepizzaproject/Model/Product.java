@@ -3,6 +3,10 @@ package com.mycompany.onlinepizzaproject.Model;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
+/**
+ * @deprecated Use com.mycompany.onlinepizzaproject.backend.Product instead. 
+ */
+@Deprecated 
 public class Product {
     private ObjectId id;
     @BsonProperty(value="product_id")

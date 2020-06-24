@@ -154,22 +154,23 @@ public class CustomerHomeController {
      */
     @FXML
     private void placeOrder(ActionEvent event)throws Exception{
-        Order order = new Order();
-        order.setUserId(mainController.getLoginAccount().getUserId());
-        order.setDate(new Date());
-        order.setOrderLines(mainController.getOrderLineList());
-        order.setTotalPrice(mainController.getTotalPrice());
-        if(!order.getOrderLines().isEmpty()){
-            if(mainController.sendOrderToDatabase(order)){
-                cart_list_view.getItems().clear();
-                mainController.clearCart();
-                alert = new Alert(Alert.AlertType.CONFIRMATION, "Order is sent", ButtonType.OK);
-                alert.showAndWait();
-            }else{
-                alert = new Alert(Alert.AlertType.ERROR, "Order is not sent", ButtonType.OK);
-                alert.showAndWait();
-            }
-        }
+    	throw new Exception("FIX placeOrder() in CustomerHomeCOntroller");
+//        Order order = new Order();
+//        order.setUserId(mainController.getLoginAccount().getUserId());
+//        order.setDate(new Date());
+//        order.setOrderLines(mainController.getOrderLineList());
+//        order.setTotalPrice(mainController.getTotalPrice());
+//        if(!order.getOrderLines().isEmpty()){
+//            if(mainController.sendOrderToDatabase(order)){
+//                cart_list_view.getItems().clear();
+//                mainController.clearCart();
+//                alert = new Alert(Alert.AlertType.CONFIRMATION, "Order is sent", ButtonType.OK);
+//                alert.showAndWait();
+//            }else{
+//                alert = new Alert(Alert.AlertType.ERROR, "Order is not sent", ButtonType.OK);
+//                alert.showAndWait();
+//            }
+//        }
     }
 
     /**

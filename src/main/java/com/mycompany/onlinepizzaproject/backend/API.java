@@ -38,6 +38,10 @@ public class API {
 		return createUser(email, password, AccessLevel.Customer, firstName, lastName, country, city, street, postcode, phoneNumber);
 	}
 	
+	public static String createEmployee(String email, String password, String firstName, String lastName, String country, String city, String street, String postcode, String phoneNumber) throws Exception {
+		return createUser(email, password, AccessLevel.Employee, firstName, lastName, country, city, street, postcode, phoneNumber);
+	}
+	
 	/**
 	 * Create a user
 	 * @param email
@@ -55,8 +59,6 @@ public class API {
 	 */
 	public static String createUser(String email, String password, AccessLevel accessLevel, String firstName, String lastName, String country, String city, String street, String postcode, String phoneNumber) throws Exception {
 		
-		//WTF- ??????????
-		/*
 		if(email.isBlank()) {
 			throw new Exception("Email cannot be empty");
 		}
@@ -64,7 +66,7 @@ public class API {
 		if(password.isBlank()) {
 			throw new Exception("Password cannot be empty");
 		}
-		*/
+		
 		// Check if user already exists
 		Document doc = mongo.findFirst("email", email, Collection.User);
 		
@@ -86,23 +88,22 @@ public class API {
 	 * @throws Exception When email or password is wrong
 	 */
 	public static User loginUser(String email, String password) throws Exception {
-		
-		Document doc = mongo.findFirst("email", email, Collection.User);
-		
-		if(doc == null) {
-			throw new Exception("Wrong email or password");
-		}
-		
-		boolean correctPassword = Password.validatePassword(password, doc.getString("password"));
-		
-		if(!correctPassword) {
-			throw new Exception("Wrong email or password");
-		} else {
-			return new User(doc);
-		}
+		return new User(login(email, password));
 	}
 	
 	public static String loginUserJSON(String email, String password) throws Exception {
+		return login(email, password).toJson();
+	}
+	
+	private static Document login(String email, String password) throws Exception {
+		
+		if(email.isBlank()) {
+			throw new Exception("Email cannot be empty");
+		}
+		
+		if(password.isBlank()) {
+			throw new Exception("Password cannot be empty");
+		}
 		
 		Document doc = mongo.findFirst("email", email, Collection.User);
 		
@@ -115,7 +116,7 @@ public class API {
 		if(!correctPassword) {
 			throw new Exception("Wrong email or password");
 		} else {
-			return doc.toJson();
+			return doc;
 		}
 	}
 	

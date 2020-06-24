@@ -17,6 +17,7 @@ import com.mycompany.onlinepizzaproject.Model.OrderLine;
 import com.mycompany.onlinepizzaproject.Model.Product;
 import com.mycompany.onlinepizzaproject.Model.Sale;
 import com.mycompany.onlinepizzaproject.MongoDBController.MongoDBController;
+import com.mycompany.onlinepizzaproject.backend.User;
 
 import javafx.collections.ObservableList;
 
@@ -29,7 +30,7 @@ public class MainController {
     public final static String MANAGER_ACCESS_LEVEL = "manager";
     private Random rand = new Random();
     private List<Product> productListToDatabase = new ArrayList<>();
-    private Account loginAccount;
+    private User loginUser;
 
     //CUSTOMER VARIABLES
     private Order order;
@@ -342,15 +343,15 @@ public class MainController {
         return mongoDBController.sendSales(saleList);
     }
 
-    public boolean findAccountByEmailPassword(String email, String password){
-        this.loginAccount = mongoDBController.getAccount(email, password);
-        if(loginAccount == null){
-            return false;
-        }else{
-            setLoginAccount(loginAccount);
-            return true;
-        }
-    }
+//    public boolean findAccountByEmailPassword(String email, String password){
+//        this.loginUser = mongoDBController.getAccount(email, password);
+//        if(loginUser == null){
+//            return false;
+//        }else{
+//            setLoginAccount(loginUser);
+//            return true;
+//        }
+//    }
 
     public boolean findAccountByEmail(String email){
         return mongoDBController.getAccount(email);
@@ -430,7 +431,7 @@ public class MainController {
     }
 
     public void clearDataManager(){
-        setLoginAccount(new Account());
+        setLoginAccount(null);
         getOrderList().clear();
         getSaleList().clear();
         getIngredientList().clear();
@@ -453,12 +454,12 @@ public class MainController {
 		this.productListToDatabase = productListToDatabase;
 	}
 
-	public Account getLoginAccount() {
-		return loginAccount;
+	public User getLoginAccount() {
+		return loginUser;
 	}
 
-	public void setLoginAccount(Account loginAccount) {
-		this.loginAccount = loginAccount;
+	public void setLoginAccount(User loginUser) {
+		this.loginUser = loginUser;
 	}
 
 	public Order getOrder() {
