@@ -68,7 +68,6 @@ public class LoginController  {
         	}
         	
 		} catch (Exception e) {
-			e.printStackTrace();
 			alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) {

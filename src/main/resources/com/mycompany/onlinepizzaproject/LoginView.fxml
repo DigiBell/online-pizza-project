@@ -30,8 +30,8 @@
          <children>
             <Label text="Login" />
             <Label text="Password" GridPane.rowIndex="1" />
-            <PasswordField fx:id="text_password" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="text_email" promptText="email" GridPane.columnIndex="1" />
+            <PasswordField fx:id="text_password" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="button_login_user" mnemonicParsing="false" onAction="#login_into_system" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
