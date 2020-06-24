@@ -17,6 +17,7 @@ import com.mycompany.onlinepizzaproject.Model.OrderLine;
 import com.mycompany.onlinepizzaproject.Model.Product;
 import com.mycompany.onlinepizzaproject.Model.Sale;
 import com.mycompany.onlinepizzaproject.MongoDBController.MongoDBController;
+import com.mycompany.onlinepizzaproject.backend.Pizza;
 
 import javafx.collections.ObservableList;
 
@@ -52,8 +53,8 @@ public class MainController {
     private List<Product> productList = new ArrayList<>(); //products from database, both pizza and non-pizza
     private List<Document> topSales = new ArrayList<>();
     private ObservableList<String> topSalesLineList;
-    private Product productToAddToDatabase; // new product
-    private Product productToChange; // product with new data but same id
+    private com.mycompany.onlinepizzaproject.backend.Product productToEdit; 
+    private com.mycompany.onlinepizzaproject.backend.Pizza pizzaToEdit;
 
 
     private final static MainController MAIN_CONTROLLER_INSTANCE = new MainController();
@@ -605,20 +606,14 @@ public class MainController {
 		this.topSalesLineList = topSalesLineList;
 	}
 
-	public Product getProductToAddToDatabase() {
-		return productToAddToDatabase;
-	}
 
-	public void setProductToAddToDatabase(Product productToAddToDatabase) {
-		this.productToAddToDatabase = productToAddToDatabase;
+	public com.mycompany.onlinepizzaproject.backend.Product getProductToEdit() {
+		return productToEdit;
 	}
+	
 
-	public Product getProductToChange() {
-		return productToChange;
-	}
-
-	public void setProductToChange(Product productToChange) {
-		this.productToChange = productToChange;
+	public void setProductToEdit(com.mycompany.onlinepizzaproject.backend.Product productToEdit) {
+		this.productToEdit = productToEdit;
 	}
 
 	public MongoDBController getMongoDBController() {
@@ -627,6 +622,14 @@ public class MainController {
 
 	public void setMongoDBController(MongoDBController mongoDBController) {
 		this.mongoDBController = mongoDBController;
+	}
+
+	public Pizza getPizzaToEdit() {
+		return pizzaToEdit;
+	}
+
+	public void setPizzaToEdit(Pizza pizzaToEdit) {
+		this.pizzaToEdit = pizzaToEdit;
 	}
 
     //////////////////////////////////////////----GETTERS & SETTERS----//////////////////////////////////
