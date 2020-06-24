@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,8 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="com.mycompany.onlinepizzaproject.ManagerAddProductController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.onlinepizzaproject.ManagerAddPizzaController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -27,14 +25,14 @@ fx:controller="com.mycompany.onlinepizzaproject.ManagerAddProductController">
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Category" GridPane.rowIndex="1" />
             <Label text="Name" />
-            <TextField fx:id="product_name_textfield" prefWidth="300.0" GridPane.columnIndex="1" />
-            <TextField fx:id="product_price_textfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Price" GridPane.rowIndex="2" />
-            <ChoiceBox fx:id="product_category_choicebox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Quantity" GridPane.rowIndex="3" />
-            <TextField fx:id="product_quantity_textfield" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Description Swedish" GridPane.rowIndex="1" />
+            <TextField fx:id="pizza_name_textfield" prefWidth="300.0" GridPane.columnIndex="1" />
+            <TextField fx:id="pizza_description_sv_textfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="pizza_description_en_textfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="pizza_price_textfield" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Description English" GridPane.rowIndex="2" />
+            <Label text="Price" GridPane.rowIndex="3" />
          </children>
          <BorderPane.margin>
             <Insets left="50.0" right="50.0" />
@@ -42,7 +40,7 @@ fx:controller="com.mycompany.onlinepizzaproject.ManagerAddProductController">
       </GridPane>
    </center>
    <top>
-      <Label text="Add new product" BorderPane.alignment="CENTER">
+      <Label text="Add new pizza" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" top="20.0" />
          </BorderPane.margin>
@@ -54,12 +52,12 @@ fx:controller="com.mycompany.onlinepizzaproject.ManagerAddProductController">
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="new_product_add_button" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Add">
+            <Button fx:id="new_pizza_add_button" mnemonicParsing="false" onAction="#addPizza" prefHeight="30.0" prefWidth="50.0" text="Add">
                <HBox.margin>
                   <Insets left="200.0" top="25.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="new_product_cancel_button" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Cancel">
+            <Button fx:id="new_pizza_cancel_button" mnemonicParsing="false" onAction="#cancel" prefHeight="30.0" prefWidth="80.0" text="Cancel">
                <HBox.margin>
                   <Insets left="100.0" top="25.0" />
                </HBox.margin>
