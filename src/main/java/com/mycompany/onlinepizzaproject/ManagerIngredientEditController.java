@@ -1,13 +1,12 @@
 package com.mycompany.onlinepizzaproject;
 
-import com.mycompany.onlinepizzaproject.Model.Ingredient;
+import com.mycompany.onlinepizzaproject.backend.Ingredient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -19,32 +18,27 @@ public class ManagerIngredientEditController {
 
 
     private Stage stage;
+    private Ingredient ingredient;
 
     @FXML private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        Ingredient ingredient = mainController.getIngredientToChange();
+        ingredient = mainController.getIngredientToChange();
         ObservableList<String> ingredientLines = FXCollections.observableArrayList();
-        ingredientLines.add("Ingredient id: " + ingredient.getId());
+        ingredientLines.add("Ingredient id: " );
         ingredientLines.add("Ingredient name: " + ingredient.getName());
-        ingredientLines.add("Description: " + ingredient.getDescription());
-        ingredientLines.add("Quantity: " + ingredient.getQuantity());
-        ingredientLines.add("Units: " + ingredient.getUnits());
+        ingredientLines.add("Description: " );
+        ingredientLines.add("Quantity: " + ingredient.getStock().toString());
+        ingredientLines.add("Price/kg: " + ingredient.getPricePerKg());
         ingredient_edit_list_view.setItems(ingredientLines);
     }
 
     @FXML
     private void confirmChange(ActionEvent event){
+    	String quantity = ingredient_edit_quantity_field.getText();
 
-        if(!ingredient_edit_quantity_field.getText().isEmpty()){
-            String str = ingredient_edit_quantity_field.getText();
-
-            if(mainController.updateIngredient(Integer.valueOf(str))){
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Update successful.", ButtonType.OK);
-                alert.showAndWait();
-            }else{
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Update failed.", ButtonType.OK);
-                alert.showAndWait();
-            }
+        if(!quantity.trim().isEmpty()){
+           
+        	// change ingredient quantity editIngredient(ingredient, newQuantity)
         }
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();

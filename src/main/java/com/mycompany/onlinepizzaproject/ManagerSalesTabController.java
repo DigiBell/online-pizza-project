@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.util.List;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import org.bson.Document;
 
 public class ManagerSalesTabController {
@@ -25,8 +23,8 @@ public class ManagerSalesTabController {
         LocalDate dateFrom = sales_from_date_picker.getValue();
         LocalDate dateTo = sales_to_date_picker.getValue();
         if(dateFrom != null && dateTo != null){
-            mainController.getTopSalesFromDatabase(Date.from(dateFrom.atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                    Date.from(dateTo.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            //mainController.getTopSalesFromDatabase(Date.from(dateFrom.atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                    //Date.from(dateTo.atStartOfDay(ZoneId.systemDefault()).toInstant()));
             showTopSales();
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING, "Choose from and to date.", ButtonType.OK);

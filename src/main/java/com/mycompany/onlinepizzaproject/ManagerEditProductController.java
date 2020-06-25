@@ -21,7 +21,7 @@ public class ManagerEditProductController {
 
     @FXML private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        product = mainController.getProductToEdit();
+        product = mainController.getProductToChange();
         ObservableList<String> productLines = FXCollections.observableArrayList();
         productLines.add("Product name: " + product.getName());
         productLines.add("Category: " + product.getCategory());
@@ -32,12 +32,23 @@ public class ManagerEditProductController {
 
     @FXML
     private void editProduct(ActionEvent event){
-    	if(!product_edit_price_textfield.getText().trim().isEmpty() && !product_edit_quantity_textfield.getText().trim().isEmpty()){
-        	//change both price and quantity. Use product.
-        }else if(!product_edit_price_textfield.getText().trim().isEmpty()) {
+    	String price = product_edit_price_textfield.getText();
+    	String quantity = product_edit_quantity_textfield.getText();
+    	if(!price.trim().isEmpty() && !quantity.trim().isEmpty()){
+    		
+        	//change both price and quantity. Use product. 
+    		//changeProduct(product, Integer.valueOf(quantity), Integer.valueOf(price))
+    		
+        }else if(!price.trim().isEmpty()) {
+        	
         	//change price. Use product.
-        }else if(!product_edit_quantity_textfield.getText().trim().isEmpty()) {
+        	//changeProduct(product, Integer.valueOf(price))
+        	
+        }else if(!quantity.trim().isEmpty()) {
+        	
         	//change quantity. Use product.
+        	//changeProduct(product, Integer.valueOf(quantity))
+        	
         }else {
         	//both empty. do nothing
         }

@@ -1,12 +1,12 @@
 package com.mycompany.onlinepizzaproject;
 
+import com.mycompany.onlinepizzaproject.backend.API;
 import com.mycompany.onlinepizzaproject.backend.Pizza;
-
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -35,7 +35,13 @@ public class ManagerAddPizzaController {
 		int price30cm = Integer.valueOf(pizza_price_textfield.getText());
 		Pizza pizza = new Pizza(name, 0, price30cm, 0, descriptionSv, descriptionEn);	
 		
-		//Add new pizza to database
+		//Add new pizza to database addPizza(pizza);
+		try {
+			API.addPizza(pizza);
+		} catch (Exception e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            alert.showAndWait();
+		}
 		
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();

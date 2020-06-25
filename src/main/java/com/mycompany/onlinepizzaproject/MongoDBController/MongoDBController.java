@@ -65,7 +65,7 @@ public class MongoDBController {
 
         sendProducts();
         sendIngredients();
-        sendAccount(mainController.generateManager());
+        //sendAccount(mainController.generateManager());
     }
 
     //DELETE COLLECTIONS
@@ -90,7 +90,7 @@ public class MongoDBController {
     private static void sendProducts() {
         MongoCollection<Product> products = database.getCollection("Products", Product.class);
         try{
-            products.insertMany(mainController.generateProductCollection());//Products
+            //products.insertMany(mainController.generateProductCollection());//Products
         }catch (Exception e){ }
     }
 
@@ -108,7 +108,7 @@ public class MongoDBController {
     //SEND INGREDIENTS
     private static void sendIngredients() {
         MongoCollection<Ingredient> ingredients = database.getCollection("Ingredients", Ingredient.class);
-        ingredients.insertMany(mainController.generateIngredientCollection());
+        //ingredients.insertMany(mainController.generateIngredientCollection());
     }
 
     //GET INGREDIENTS

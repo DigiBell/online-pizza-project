@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -24,7 +26,6 @@ public class ManagerPizzaTabController {
     @FXML private TableColumn<Pizza, String> pizza_ingredients_column;
     @FXML private TableColumn<Pizza, Integer> pizza_price_column;
     @FXML private TextField pizza_name_search_textfield;
-
 
     @FXML
     private void initialize(){
@@ -46,7 +47,8 @@ public class ManagerPizzaTabController {
     	Pizza pizzaSelected = pizzaTable.getSelectionModel().getSelectedItem();
     	if(pizzaSelected != null) {
     		System.out.println("Selected product to delete :" + pizzaSelected.toString());
-    		//Delete product from database
+    		//Delete pizza from database
+    		//deletePizza(pizza)
     	}
     }
     
@@ -54,7 +56,7 @@ public class ManagerPizzaTabController {
     private void editPizza(ActionEvent event)throws Exception{
     	Pizza pizzaSelected = pizzaTable.getSelectionModel().getSelectedItem();
     	if(pizzaSelected != null) {
-    		mainController.setPizzaToEdit(pizzaSelected);
+    		mainController.setPizzaToChange(pizzaSelected);
     		showEditPizzaView();
     	}
     }
@@ -72,6 +74,14 @@ public class ManagerPizzaTabController {
     	String name = pizza_name_search_textfield.getText();
     	if(!name.trim().isEmpty()) {
     		//Find pizza by name in database
+    		try {
+    			Pizza pizza = API.getPizza(name);
+    			pizzaTable.getItems().clear();
+    			pizzaTable.getItems().add(pizza);
+    		}catch (Exception e) {
+    			Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                alert.showAndWait();
+    		}
     	}
     }
     

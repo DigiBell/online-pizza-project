@@ -15,8 +15,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class LoginController  {
-    @FXML private CustomerHomeController customerHomeController;
-    @FXML private CreateAccountController createAccountController;
+    //@FXML private CustomerHomeController customerHomeController;
+    //@FXML private CreateAccountController createAccountController;
     @FXML private EmployeeHomeController employeeHomeController;
     @FXML private ManagerHomeController managerHomeController;
     @FXML private MainController mainController;
@@ -50,32 +50,34 @@ public class LoginController  {
         try {
         	User user = API.loginUser(text_email.getText(), text_password.getText());
         	
-        	mainController.setLoginAccount(user);
+        	mainController.setLoginUser(user);
         	
-        	if(user.getAccessLevel() == AccessLevel.Customer) {
-        		changeToCustomerHomeView();
-        	} else if(user.getAccessLevel() == AccessLevel.Employee) {
-        		alert = new Alert(Alert.AlertType.NONE, "Choose login way", ButtonType.OK, ButtonType.CANCEL );
-                ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Employee");
-                ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Customer");
-                alert.showAndWait();
-                if (alert.getResult() == ButtonType.OK) {
-                	changeToEmployeeHomeView();
-                }else{
-                    changeToCustomerHomeView();
-                }
+        	if(user.getAccessLevel() == AccessLevel.Employee) {
+        		changeToEmployeeHomeView();
+        		
+				/*
+				 * alert = new Alert(Alert.AlertType.NONE, "Choose login way", ButtonType.OK,
+				 * ButtonType.CANCEL ); ((Button)
+				 * alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Employee");
+				 * ((Button)
+				 * alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Customer");
+				 * alert.showAndWait(); if (alert.getResult() == ButtonType.OK) {
+				 * changeToEmployeeHomeView(); }else{ changeToCustomerHomeView(); }
+				 */
 
         		
         	} else if(user.getAccessLevel() == AccessLevel.Manager) {
-                alert = new Alert(Alert.AlertType.CONFIRMATION, "Choose login way", ButtonType.OK, ButtonType.CANCEL );
-                ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Manager");
-                ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Customer");
-                alert.showAndWait();
-                if (alert.getResult() == ButtonType.OK) {
-                    changeToManagerHomeView();
-                }else{
-                    changeToCustomerHomeView();
-                }
+        		changeToManagerHomeView();
+        		
+				/*
+				 * alert = new Alert(Alert.AlertType.CONFIRMATION, "Choose login way",
+				 * ButtonType.OK, ButtonType.CANCEL ); ((Button)
+				 * alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Manager");
+				 * ((Button)
+				 * alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Customer");
+				 * alert.showAndWait(); if (alert.getResult() == ButtonType.OK) {
+				 * changeToManagerHomeView(); }else{ changeToCustomerHomeView(); }
+				 */
         	}
         	
 		} catch (Exception e) {
@@ -115,29 +117,27 @@ public class LoginController  {
      * @param event that triggered method call.
      * @throws Exception if scene cant be fount.
      */
-    @FXML
-    private void changeToCreateAccountView(ActionEvent event) throws Exception {
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateAccountView.fxml"));
-        root = loader.load();
-        createAccountController = loader.getController();
-        stage.setScene(new Scene(root, MainController.MAIN_STAGE_WIDTH, MainController.MAIN_STAGE_HEIGHT));
-        root.requestFocus();
-        stage.show();
-    }
+	/*
+	 * @FXML private void changeToCreateAccountView(ActionEvent event) throws
+	 * Exception { stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	 * FXMLLoader loader = new
+	 * FXMLLoader(getClass().getResource("CreateAccountView.fxml")); root =
+	 * loader.load(); createAccountController = loader.getController();
+	 * stage.setScene(new Scene(root, MainController.MAIN_STAGE_WIDTH,
+	 * MainController.MAIN_STAGE_HEIGHT)); root.requestFocus(); stage.show(); }
+	 */
 
     /**
      * Load scene UserHomeView into existing stage.
      * @throws Exception if scene cant be fount.
      */
-    private void changeToCustomerHomeView()throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerHomeView.fxml"));
-        root = loader.load();
-        customerHomeController = loader.getController();
-        stage.setScene(new Scene(root, MainController.MAIN_STAGE_WIDTH, MainController.MAIN_STAGE_HEIGHT));
-        root.requestFocus();
-        stage.show();
-    }
+	/*
+	 * private void changeToCustomerHomeView()throws Exception{ FXMLLoader loader =
+	 * new FXMLLoader(getClass().getResource("CustomerHomeView.fxml")); root =
+	 * loader.load(); customerHomeController = loader.getController();
+	 * stage.setScene(new Scene(root, MainController.MAIN_STAGE_WIDTH,
+	 * MainController.MAIN_STAGE_HEIGHT)); root.requestFocus(); stage.show(); }
+	 */
     
     /**
      * Load scene EmployeeHomeView into existing stage.

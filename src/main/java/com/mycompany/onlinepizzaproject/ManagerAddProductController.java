@@ -1,4 +1,5 @@
 package com.mycompany.onlinepizzaproject;
+import com.mycompany.onlinepizzaproject.backend.API;
 import com.mycompany.onlinepizzaproject.backend.Product;
 import com.mycompany.onlinepizzaproject.backend.Product.Category;
 
@@ -34,7 +35,7 @@ public class ManagerAddProductController {
 		String category = (String) product_category_choicebox.getSelectionModel().getSelectedItem();
 		String price = product_price_textfield.getText();
 		String quantity = product_quantity_textfield.getText();
-		Product product;
+		Product product = null;
 		
 		if(name.trim().isEmpty() || category.trim().isEmpty() || price.trim().isEmpty() || quantity.trim().isEmpty()) {
 			Alert alert = new Alert(Alert.AlertType.WARNING, "All fields must be filled.", ButtonType.OK);
@@ -43,6 +44,8 @@ public class ManagerAddProductController {
 			int intPrice = Integer.valueOf(price);
 			int intQuantity = Integer.valueOf(quantity);
 			switch(category) {
+			case "Select category":
+				break;
 	     	case "Beverage":
 	     		product = new Product(name, Category.beverage, intPrice, intQuantity);
 	     	case "Ice-cream":
@@ -52,9 +55,18 @@ public class ManagerAddProductController {
 	     	case "Side dish":
 	     		product = new Product(name, Category.sideDish, intPrice, intQuantity);
 	     	}
+			
+			try {
+				System.out.println("category: " + category);
+				
+				API.addProduct(product);
+			} catch (Exception e) {
+				Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+	            alert.showAndWait();
+			}
 		}
 			
-		 //Add new product to database
+		 //Add new product to database addProduct(product)
 		
 		 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	     stage.close();
