@@ -188,6 +188,10 @@ public class API {
 		mongo.delete("name", pizza.getName(), Collection.Pizza);
 	}
 	
+	public static void updatePizzaPrice(Pizza pizza, int newPrice) {
+		mongo.updateDocument("name", pizza.getName(), new Document("price30cm", newPrice), Collection.Pizza);
+	}
+	
 	// ****************
 	// ** Ingredient **
 	// ****************
@@ -317,6 +321,18 @@ public class API {
 	
 	public static void deleteProduct(Product product) {
 		mongo.delete("name", product.getName(), Collection.Product);
+	}
+	
+	public static void updateProductPrice(Product product, int newPrice) {
+		mongo.updateDocument("name", product.getName(), new Document("price", newPrice), Collection.Product);
+	}
+	
+	public static void updateProductStock(Product product, int newStock) {
+		mongo.updateDocument("name", product.getName(), new Document("stock", newStock), Collection.Product);
+	}
+	
+	public static void updateProductPriceAndStock(Product product, int newPrice, int newStock) {
+		mongo.updateDocument("name", product.getName(), new Document("price", newPrice).append("stock", newStock), Collection.Product);
 	}
 	
 	// ***********

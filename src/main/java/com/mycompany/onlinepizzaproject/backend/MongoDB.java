@@ -107,22 +107,9 @@ public class MongoDB {
 	 * @param col The collection
 	 * @return An ArrayList of the documents
 	 */
-	public ArrayList<Document> getAllInCollection(Collection col) {
-		
-		ArrayList<Document> docs = new ArrayList<Document>();
-		
+	public ArrayList<Document> getAllInCollection(Collection col) {			
 		MongoCollection<Document> collection = database.getCollection(col.toString());
-		
-		MongoCursor<Document> cursor = collection.find().iterator();
-		try {
-		    while (cursor.hasNext()) {
-		        docs.add(cursor.next());
-		    }
-		} finally {
-		    cursor.close();
-		}
-		
-		return docs;
+		return collection.find().into(new ArrayList<Document>());
 	}
 	
 	/**
@@ -155,22 +142,9 @@ public class MongoDB {
 		return collection.find(eq(key, value)).first();
 	}
 	
-	public ArrayList<Document> findAll(String key, String value, Collection col){		
-		
-		ArrayList<Document> docs = new ArrayList<Document>();
-		
+	public ArrayList<Document> findAll(String key, String value, Collection col) {		
 		MongoCollection<Document> collection = database.getCollection(col.toString());
-		
-		MongoCursor<Document> cursor = collection.find(eq(key, value)).iterator();
-		try {
-		    while (cursor.hasNext()) {
-		        docs.add(cursor.next());
-		    }
-		} finally {
-		    cursor.close();
-		}
-		
-		return docs;		
+		return collection.find(eq(key, value)).into(new ArrayList<Document>());	
 	}
 	
 	public ArrayList<String> findAllJSON(String key, String value, Collection col){		

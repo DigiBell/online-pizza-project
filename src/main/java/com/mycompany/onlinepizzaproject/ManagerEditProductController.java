@@ -1,5 +1,6 @@
 package com.mycompany.onlinepizzaproject;
 
+import com.mycompany.onlinepizzaproject.backend.API;
 import com.mycompany.onlinepizzaproject.backend.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,17 +38,17 @@ public class ManagerEditProductController {
     	if(!price.trim().isEmpty() && !quantity.trim().isEmpty()){
     		
         	//change both price and quantity. Use product. 
-    		//changeProduct(product, Integer.valueOf(quantity), Integer.valueOf(price))
+    		API.updateProductPriceAndStock(product, Integer.valueOf(price), Integer.valueOf(quantity));
     		
         }else if(!price.trim().isEmpty()) {
         	
         	//change price. Use product.
-        	//changeProduct(product, Integer.valueOf(price))
+        	API.updateProductPrice(product, Integer.valueOf(price));
         	
         }else if(!quantity.trim().isEmpty()) {
         	
         	//change quantity. Use product.
-        	//changeProduct(product, Integer.valueOf(quantity))
+        	API.updateProductStock(product, Integer.valueOf(quantity));
         	
         }else {
         	//both empty. do nothing

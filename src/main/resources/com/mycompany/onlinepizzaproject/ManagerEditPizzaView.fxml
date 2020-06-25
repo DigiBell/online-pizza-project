@@ -26,7 +26,7 @@
         </rowConstraints>
          <children>
             <Label text="New price" />
-            <TextField fx:id="ingredient_edit_price_field" GridPane.columnIndex="1" />
+            <TextField fx:id="pizza_edit_price_field" GridPane.columnIndex="1" />
          </children>
          <opaqueInsets>
             <Insets />

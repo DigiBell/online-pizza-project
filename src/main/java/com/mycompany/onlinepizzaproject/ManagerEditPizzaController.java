@@ -1,5 +1,6 @@
 package com.mycompany.onlinepizzaproject;
 
+import com.mycompany.onlinepizzaproject.backend.API;
 import com.mycompany.onlinepizzaproject.backend.Pizza;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +23,7 @@ public class ManagerEditPizzaController {
         mainController = MainController.getMainControllerInstance();
         pizza = mainController.getPizzaToChange();
         ObservableList<String> pizzaLines = FXCollections.observableArrayList();
-        pizzaLines.add("Ingredient name: " + pizza.getName());
+        pizzaLines.add("Pizza name: " + pizza.getName());
         pizzaLines.add("DescriptionSv: " + pizza.getDescriptionSv());
         pizzaLines.add("DescriptionEn: " + pizza.getDescriptionEn());
         pizzaLines.add("Price: " + pizza.getPrice());
@@ -37,6 +38,7 @@ public class ManagerEditPizzaController {
         		int price30cm = Integer.valueOf(pizza_edit_price_field.getText());
         		
         		//Change price for pizza in database. changePizza(pizza, price30cm)
+        		API.updatePizzaPrice(pizza, price30cm);
         	}
         }
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
