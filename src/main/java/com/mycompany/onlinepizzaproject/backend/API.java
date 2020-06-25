@@ -348,25 +348,25 @@ public class API {
 		return mongo.insertDocument(new Order(json).toDocument(), Collection.Order);
 	}
 	
-	public static Order[] getOrders() {
+	public static List<Order> getOrders() {
 		ArrayList<Document> docs = mongo.getAllInCollection(Collection.Order);
 		
-		Order[] orders = new Order[docs.size()];
+		ArrayList<Order> orders = new ArrayList<Order>();
 		
-		for (int i = 0; i < orders.length; i++) {
-			orders[i] = new Order(docs.get(i));
+		for (Document doc : docs) {
+			orders.add(new Order(doc));
 		}
 		
 		return orders;
 	}
 	
-	public static Order[] getOrders(String customer) {
+	public static List<Order> getOrders(String customer) {
 		ArrayList<Document> docs = mongo.findAll("customer", customer, Collection.Order);
 		
-		Order[] orders = new Order[docs.size()];
+		ArrayList<Order> orders = new ArrayList<Order>();
 		
-		for (int i = 0; i < orders.length; i++) {
-			orders[i] = new Order(docs.get(i));
+		for (Document doc : docs) {
+			orders.add(new Order(doc));
 		}
 		
 		return orders;

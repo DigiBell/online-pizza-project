@@ -23,8 +23,8 @@ public class ManagerOrdersTabController {
     @FXML private MainController mainController;
     @FXML private TableView<Order> ordersTable;
     @FXML private TableColumn<Order, String> orders_order_id_column;
-    @FXML private TableColumn<Order, String> orders_user_id_column;
     @FXML private TableColumn<Order, String> orders_date_column;
+    @FXML private TableColumn<Order, String> orders_user_email_column;
     @FXML private TableColumn<Order, String> orders_total_price_column;
     @FXML private TableColumn<Order, String> orders_status_column;
     @FXML private DatePicker orders_from_date_picker;
@@ -35,8 +35,8 @@ public class ManagerOrdersTabController {
     private void initialize(){
         mainController = MainController.getMainControllerInstance();
         //orders_order_id_column.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
-        //orders_user_id_column.setCellValueFactory(new PropertyValueFactory<>("UserId"));
         orders_date_column.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        orders_user_email_column.setCellValueFactory(new PropertyValueFactory<>("Customer"));
         orders_status_column.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
         orders_total_price_column.setCellValueFactory(new PropertyValueFactory<>("Status"));
     }
@@ -50,13 +50,7 @@ public class ManagerOrdersTabController {
         LocalDate dateFrom = orders_from_date_picker.getValue();
         LocalDate dateTo = orders_to_date_picker.getValue();
         ordersTable.getItems().clear();
-        Order[] orders = API.getOrders();
-        List<Order> orderList = new ArrayList<>();
-        for (int i = 0; i < orders.length; i++) {
-        	orderList.add(orders[i]);
-		}
-        
-        ordersTable.getItems().addAll(orderList);
+        ordersTable.getItems().addAll(API.getOrders());
     }
     
     /**

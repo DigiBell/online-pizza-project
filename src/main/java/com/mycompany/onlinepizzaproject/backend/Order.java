@@ -30,7 +30,9 @@ public class Order {
 			try {
 				this.pizza = API.getPizza(doc.getString("pizza"));
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
+				// This pizza no longer exists
+				this.pizza = new Pizza(doc.getString("pizza"), 0, 0, 0, "", "");
 			}
 			this.size = Pizza.getSizeFromString(doc.getString("size"));
 			this.amount = doc.getInteger("amount");
@@ -38,6 +40,11 @@ public class Order {
 		
 		public Document toDocument() {
 			return new Document("pizza", pizza.getName()).append("size", Pizza.getSizeString(size)).append("amount", amount);
+		}
+		
+		@Override
+		public String toString() {
+			return pizza.getName() + ": " + amount;
 		}
 	}
 	
@@ -54,13 +61,20 @@ public class Order {
 			try {
 				this.product = API.getProduct(doc.getString("product"));
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
+				// Product does not exist
+				this.product = new Product(doc.getString("product"), null, 0, 0);
 			}
 			this.amount = doc.getInteger("amount");
 		}
 		
 		public Document toDocument() {
 			return new Document("product", product.getName()).append("amount", amount);
+		}
+		
+		@Override
+		public String toString() {
+			return product.getName() + ": " + amount;
 		}
 	}
 	

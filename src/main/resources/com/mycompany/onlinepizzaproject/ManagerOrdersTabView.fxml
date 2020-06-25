@@ -13,9 +13,9 @@
     <center>
         <TableView fx:id="ordersTable" layoutY="50.0" prefHeight="500.0" prefWidth="650.0">
             <columns>
-                <TableColumn fx:id="orders_order_id_column" prefWidth="50.0" text="Order ID" />
-                <TableColumn fx:id="orders_user_id_column" prefWidth="50.0" text="User ID" />
+                <!-- <TableColumn fx:id="orders_order_id_column" prefWidth="50.0" text="Order ID" /> -->
                 <TableColumn fx:id="orders_date_column" prefWidth="80.0" text="Date" />
+                <TableColumn fx:id="orders_user_email_column" prefWidth="50.0" text="User email" />
                 <TableColumn fx:id="orders_total_price_column" prefWidth="50.0" text="Total price(SEK)" />
                 <TableColumn fx:id="orders_status_column" prefWidth="500.0" text="Status" />
             </columns>

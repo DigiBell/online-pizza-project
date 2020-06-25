@@ -52,14 +52,8 @@ public class EmployeeOrderTabController {
     private void showAll(ActionEvent event){ // NEED A CHANGE, GET ORDERS WITH STATUS PLACED FROM DATABASE, OR SORT ON CLIENT SIDE.
     	LocalDate dateFrom = orders_from_date_picker.getValue();
         LocalDate dateTo = orders_to_date_picker.getValue();
-        ordersTable.getItems().clear();
-        Order[] orders = API.getOrders();
-        List<Order> orderList = new ArrayList<>();
-        for (int i = 0; i < orders.length; i++) {
-        	orderList.add(orders[i]);
-		}
-        
-        ordersTable.getItems().addAll(orderList);
+        ordersTable.getItems().clear();        
+        ordersTable.getItems().addAll(API.getOrders());
     }
     
     /**
