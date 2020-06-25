@@ -1,6 +1,7 @@
 package com.mycompany.onlinepizzaproject;
 
 import com.mycompany.onlinepizzaproject.backend.Product;
+import com.mycompany.onlinepizzaproject.backend.Product.Category;
 import com.mycompany.onlinepizzaproject.backend.API;
 
 import javafx.collections.FXCollections;
@@ -10,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -52,8 +55,12 @@ public class ManagerProductsTabController {
     @FXML
     private void deleteProduct(ActionEvent event){
     	Product productSelected = productsTable.getSelectionModel().getSelectedItem();
-    	System.out.println("Selected product to delete :" + productSelected.toString());
     	//Delete product from database
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete product: " + productSelected.getName(), ButtonType.YES, ButtonType.CANCEL);
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.YES) {
+        	API.deleteProduct(productSelected);
+        }
     }
     
     @FXML
@@ -78,46 +85,63 @@ public class ManagerProductsTabController {
      * @param event
      */
     @FXML
-    private void search(ActionEvent event){
-    	String category = (String) product_category_choicebox.getSelectionModel().getSelectedItem();
-    	String name = product_name_textfield.getText();
-    	if(!category.trim().isEmpty()) {
-    		switch(category) {
-    		case "Select category":
-				break;
-        	case "Beverage":
-        		if(!name.trim().isEmpty()) {
-        			//Find product by name and category
-        		}else {
-        			//Find products by category
-        		}
-        		break;
-        	case "Ice-cream":
-        		if(!name.trim().isEmpty()) {
-        			//Find product by name and category
-        		}else {
-        			//Find products by category
-        		}
-        		break;
-        	case "Sause":
-        		if(!name.trim().isEmpty()) {
-        			//Find product by name and category
-        		}else {
-        			//Find products by category
-        		}
-        		break;
-        	case "Side dish":
-        		if(!name.trim().isEmpty()) {
-        			//Find product by name and category
-        		}else {
-        			//Find products by category
-        		}
-        		break;
-        	}
-    	}else {
-    		//Find product by name
-    	}
-    }
+	private void search(ActionEvent event) {
+		String category = (String) product_category_choicebox.getSelectionModel().getSelectedItem();
+		String name = product_name_textfield.getText();	
+		switch (category) {
+		case "Select category":
+			if (!name.trim().isEmpty()) {
+				// Find product by name
+				productsTable.getItems().clear();
+				productsTable.getItems().addAll(API.searchProducts(name));
+			}
+			break;
+		case "Beverage":
+			if (!name.trim().isEmpty()) {
+				// Find product by name and category
+				productsTable.getItems().clear();
+				productsTable.getItems().addAll(API.searchProducts(name, Category.beverage));
+			} else {
+				// Find products by category
+				productsTable.getItems().clear();
+				productsTable.getItems().addAll(API.getProducts(Category.beverage));
+			}
+			break;
+		case "Ice-cream":
+			if (!name.trim().isEmpty()) {
+				// Find product by name and category
+				productsTable.getItems().clear();
+				productsTable.getItems().addAll(API.searchProducts(name, Category.iceCream));
+			} else {
+				// Find products by category
+				productsTable.getItems().clear();
+				productsTable.getItems().addAll(API.getProducts(Category.iceCream));
+			}
+			break;
+		case "Sause":
+			if (!name.trim().isEmpty()) {
+				// Find product by name and category
+				productsTable.getItems().clear();
+				productsTable.getItems().addAll(API.searchProducts(name, Category.sause));
+			} else {
+				// Find products by category
+				productsTable.getItems().clear();
+				productsTable.getItems().addAll(API.getProducts(Category.sause));
+			}
+			break;
+		case "Side dish":
+			if (!name.trim().isEmpty()) {
+				// Find product by name and category
+				productsTable.getItems().clear();
+				productsTable.getItems().addAll(API.searchProducts(name, Category.sideDish));
+			} else {
+				// Find products by category
+				productsTable.getItems().clear();
+				productsTable.getItems().addAll(API.getProducts(Category.sideDish));
+			}
+			break;
+		}
+	}
     
     
     private void showAddProductView() throws Exception {

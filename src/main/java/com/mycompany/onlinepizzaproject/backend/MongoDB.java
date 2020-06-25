@@ -4,6 +4,8 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoClient;
 
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Indexes;
 import com.mongodb.client.MongoCollection;
 
 import org.bson.Document;
@@ -11,6 +13,7 @@ import org.bson.Document;
 import com.mongodb.client.MongoCursor;
 import static com.mongodb.client.model.Filters.*;
 
+import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertManyResult;
 import com.mongodb.client.result.InsertOneResult;
 
@@ -59,6 +62,11 @@ public class MongoDB {
 			instance = new MongoDB();
 		}
 		return instance;
+	}
+	
+	public void createIndexes(Collection col) {
+		MongoCollection<Document> collection = database.getCollection(col.toString());
+		collection.createIndex(Indexes.text());
 	}
 	
 	/**
@@ -182,5 +190,20 @@ public class MongoDB {
 		
 		return docs;		
 	}
+	
+	public ArrayList<Document> searchText(String text, Collection col){
+		MongoCollection<Document> collection = database.getCollection(col.toString());
+		return collection.find(Filters.text(text)).into(new ArrayList<Document>());
+	}
+	
+	public ArrayList<Document> search(String key, String value, String text, Collection col){
+		MongoCollection<Document> collection = database.getCollection(col.toString());
+		return collection.find( and( eq(key, value), Filters.text(text) ) ).into(new ArrayList<Document>());
+	}
 
+	public boolean delete(String key, String value, Collection col) {
+		MongoCollection<Document> collection = database.getCollection(col.toString());		
+		return collection.deleteOne(eq(key, value)).wasAcknowledged();
+	}
+	
 }

@@ -46,9 +46,13 @@ public class ManagerPizzaTabController {
     private void deletePizza(ActionEvent event){
     	Pizza pizzaSelected = pizzaTable.getSelectionModel().getSelectedItem();
     	if(pizzaSelected != null) {
-    		System.out.println("Selected product to delete :" + pizzaSelected.toString());
-    		//Delete pizza from database
-    		//deletePizza(pizza)
+    		//Delete pizza from database		
+    		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete pizza: " + pizzaSelected.getName(), ButtonType.YES, ButtonType.CANCEL);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.YES) {
+            	API.deletePizza(pizzaSelected);
+            }
+    		
     	}
     }
     
@@ -75,9 +79,13 @@ public class ManagerPizzaTabController {
     	if(!name.trim().isEmpty()) {
     		//Find pizza by name in database
     		try {
-    			Pizza pizza = API.getPizza(name);
+//    			Pizza pizza = API.getPizza(name);
+//    			pizzaTable.getItems().clear();
+//    			pizzaTable.getItems().add(pizza);
+    			
     			pizzaTable.getItems().clear();
-    			pizzaTable.getItems().add(pizza);
+    			pizzaTable.getItems().addAll(API.searchPizzas(name));
+    			
     		}catch (Exception e) {
     			Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
                 alert.showAndWait();

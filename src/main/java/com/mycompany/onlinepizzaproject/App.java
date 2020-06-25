@@ -1,6 +1,8 @@
 package com.mycompany.onlinepizzaproject;
 
 
+import com.mycompany.onlinepizzaproject.backend.API;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,8 +22,11 @@ public class App extends Application {
 
     public static void main(String[] args) {
         System.out.println("Main");
+        API.createIndexes();
         launch(args);
 
+       
+        
 //        try{
 //            MainController.getMainControllerInstance().generateProductCollection();
 //        }catch (Exception e){ }

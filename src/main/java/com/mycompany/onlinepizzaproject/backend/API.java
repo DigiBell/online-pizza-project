@@ -20,6 +20,11 @@ public class API {
 
 	private static MongoDB mongo = MongoDB.getInstance();
 	
+	public static void createIndexes() {
+		mongo.createIndexes(Collection.Pizza);
+		mongo.createIndexes(Collection.Product);
+	}
+	
 	/**
 	 * Create a customer
 	 * @param email
@@ -121,9 +126,9 @@ public class API {
 	}
 	
 	
-	// ***********
-	// ** Pizza **
-	// ***********
+	// *************
+	// *** Pizza ***
+	// *************
 	
 	public static Pizza getPizza(String pizzaName) throws Exception{	
 		Document doc = mongo.findFirst("name", pizzaName, Collection.Pizza);	
@@ -142,15 +147,23 @@ public class API {
 			pizzas.add(new Pizza(doc));
 		}
 		
-//		for (int i = 0; i < pizzas.length; i++) {
-//			pizzas[i] = new Pizza(docs.get(i));
-//		}
-		
 		return pizzas;
 	}
 	
 	public static ArrayList<String> getPizzasJSON() {
 		return mongo.getAllInCollectionJSON(Collection.Pizza);
+	}
+	
+	public static List<Pizza> searchPizzas(String text) {
+		ArrayList<Document> docs = mongo.searchText(text, Collection.Pizza);
+		
+		List<Pizza> pizzas = new ArrayList<Pizza>();
+		
+		for (Document doc : docs) {
+			pizzas.add(new Pizza(doc));
+		}
+		
+		return pizzas;
 	}
 	
 	public static String addPizza(Pizza pizza) throws Exception {
@@ -171,6 +184,9 @@ public class API {
 		System.out.println("inserted: " + i);
 	}
 	
+	public static void deletePizza(Pizza pizza) {
+		mongo.delete("name", pizza.getName(), Collection.Pizza);
+	}
 	
 	// ****************
 	// ** Ingredient **
@@ -231,10 +247,6 @@ public class API {
 			products.add(new Product(doc));
 		}
 		
-//		for (int i = 0; i < products.length; i++) {
-//			products[i] = new Product(docs.get(i));
-//		}
-		
 		return products;
 	}
 	
@@ -242,13 +254,13 @@ public class API {
 		return mongo.getAllInCollectionJSON(Collection.Product);
 	}
 	
-	public static Product[] getProducts(Category category) {
+	public static List<Product> getProducts(Category category) {
 		ArrayList<Document> docs = mongo.findAll("category", category.toString(), Collection.Product);
+
+		List<Product> products = new ArrayList<Product>();
 		
-		Product[] products = new Product[docs.size()];
-		
-		for (int i = 0; i < products.length; i++) {
-			products[i] = new Product(docs.get(i));
+		for (Document doc : docs) {
+			products.add(new Product(doc));
 		}
 		
 		return products;
@@ -271,6 +283,30 @@ public class API {
 		mongo.insertDocument(product.toDocument(), Collection.Product);
 	}
 	
+	public static List<Product> searchProducts(String text) {
+		ArrayList<Document> docs = mongo.searchText(text, Collection.Product);
+		
+		List<Product> products = new ArrayList<Product>();
+		
+		for (Document doc : docs) {
+			products.add(new Product(doc));
+		}
+		
+		return products;
+	}
+	
+	public static List<Product> searchProducts(String text, Category category) {
+		ArrayList<Document> docs = mongo.search("category", category.toString(), text, Collection.Product);
+		
+		List<Product> products = new ArrayList<Product>();
+		
+		for (Document doc : docs) {
+			products.add(new Product(doc));
+		}
+		
+		return products;
+	}
+	
 	public static void addProducts(List<Document> products) {
 		System.out.println("Products: " + products.size());
 		
@@ -279,6 +315,9 @@ public class API {
 		System.out.println("inserted: " + i);
 	}
 	
+	public static void deleteProduct(Product product) {
+		mongo.delete("name", product.getName(), Collection.Product);
+	}
 	
 	// ***********
 	// ** Order **
