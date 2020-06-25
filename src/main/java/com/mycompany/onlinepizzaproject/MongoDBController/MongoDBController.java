@@ -136,7 +136,7 @@ public class MongoDBController {
     }
 
     //SEND ACCOUNT DOCUMENT
-    public boolean sendAccount(Account account) {
+    public static boolean sendAccount(Account account) {
         MongoCollection<Account> accounts = database.getCollection("Accounts", Account.class);
         InsertOneResult result = accounts.insertOne(account);
         if(result.wasAcknowledged()){

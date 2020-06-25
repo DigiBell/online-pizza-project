@@ -12,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
 public class ManagerAddProductController {
@@ -20,15 +19,14 @@ public class ManagerAddProductController {
 	@FXML private TextField product_name_textfield;
 	@FXML private TextField product_price_textfield;
 	@FXML private TextField product_quantity_textfield;
-	@FXML private ChoiceBox<String> product_category_choicebox = new ChoiceBox<String>();
+	@FXML private final ChoiceBox product_category_choicebox = new ChoiceBox<>(FXCollections.observableArrayList("Beverage", "Ice-cream", "Sause", "Side dish"));
 	private Stage stage;
 	
-	 
+	 @SuppressWarnings("unchecked")
 	@FXML
 	 private void initialize(){
-		 mainController = MainController.getMainControllerInstance(); 
-		 product_category_choicebox.setItems(FXCollections.observableArrayList("Select category", "Beverage", "Ice-cream", "Sause", "Side dish"));	
-		 product_category_choicebox.getSelectionModel().selectFirst();
+		 mainController = MainController.getMainControllerInstance();
+		 product_category_choicebox.setItems(FXCollections.observableArrayList("Beverage", "Ice-cream", "Sause", "Side dish"));
 	 }
 	 
 	 @FXML
@@ -57,7 +55,7 @@ public class ManagerAddProductController {
 	     	}
 		}
 			
-		 //Add new product to database 
+		 //Add new product to database
 		
 		 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	     stage.close();

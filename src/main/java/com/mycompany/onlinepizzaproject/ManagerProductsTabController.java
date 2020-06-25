@@ -14,7 +14,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -28,15 +27,15 @@ public class ManagerProductsTabController {
     // @FXML private TableColumn<Product, String> products_size_column;
     @FXML private TableColumn<Product, Integer> products_quantity_column;
     @FXML private TableColumn<Product, Integer> products_unit_price_column;
-    @FXML private ChoiceBox<String> product_category_choicebox = new ChoiceBox<String>();
+    @FXML private ChoiceBox product_category_choicebox = new ChoiceBox<>(FXCollections.observableArrayList("Beverage", "Ice-cream", "Sause", "Side dish"));
     @FXML private TextField product_name_textfield;
     
 
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        product_category_choicebox.setItems(FXCollections.observableArrayList("Select category", "Beverage", "Ice-cream", "Sause", "Side dish"));
-        product_category_choicebox.getSelectionModel().selectFirst();
+        product_category_choicebox.setItems(FXCollections.observableArrayList("Beverage", "Ice-cream", "Sause", "Side dish"));
         // products_product_id_column.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
         products_category_column.setCellValueFactory(new PropertyValueFactory<>("Category"));
         products_name_column.setCellValueFactory(new PropertyValueFactory<>("Name"));

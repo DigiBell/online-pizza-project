@@ -1,6 +1,5 @@
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\ManagerProductsTabController.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\backend\Password.java
-C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\OrderDetailsController.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\backend\Measurement.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\Model\Sale.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\ManagerOrdersTabController.java
@@ -9,7 +8,6 @@ C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompan
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\Model\Order.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\ManagerIngredientsTabController.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\LoginController.java
-C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\EmployeeHomeController.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\backend\REST.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\backend\Address.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\Model\OrderLine.java
@@ -19,13 +17,13 @@ C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompan
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\Model\Ingredient.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\MongoDBController\MongoDBController.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\ManagerHomeController.java
+C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\ManagerTopProductSalesController.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\ManagerIngredientEditController.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\backend\Import.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\ManagerAddProductController.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\backend\Order.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\CreateEmployeeAccountController.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\ManagerEditProductController.java
-C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\EmployeeOrderTabController.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\backend\Ingredient.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\backend\MongoDB.java
 C:\Users\akira\eclipse-workspace\online-pizza-project\src\main\java\com\mycompany\onlinepizzaproject\CustomerHomeController.java
