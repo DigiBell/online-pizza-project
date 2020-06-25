@@ -83,6 +83,8 @@ public class ManagerProductsTabController {
     	String name = product_name_textfield.getText();
     	if(!category.trim().isEmpty()) {
     		switch(category) {
+    		case "Select category":
+				break;
         	case "Beverage":
         		if(!name.trim().isEmpty()) {
         			//Find product by name and category

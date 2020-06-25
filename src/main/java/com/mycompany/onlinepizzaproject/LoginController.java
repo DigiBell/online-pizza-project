@@ -51,6 +51,7 @@ public class LoginController  {
         	User user = API.loginUser(text_email.getText(), text_password.getText());
         	
         	mainController.setLoginUser(user);
+        	System.out.println("User\n" + user.toString());
         	
         	if(user.getAccessLevel() == AccessLevel.Employee) {
         		changeToEmployeeHomeView();

@@ -29,6 +29,11 @@ public class ManagerAddProductController {
 		 product_category_choicebox.getSelectionModel().selectFirst();
 	 }
 	 
+	 
+	 /**
+	  * Add new product to database
+	  * @param event
+	  */
 	 @FXML
 	 private void addProduct(ActionEvent event) {
 		String name = product_name_textfield.getText();
@@ -48,25 +53,46 @@ public class ManagerAddProductController {
 				break;
 	     	case "Beverage":
 	     		product = new Product(name, Category.beverage, intPrice, intQuantity);
+	     		try {
+					System.out.println("category: " + category);		
+					API.addProduct(product);
+				} catch (Exception e) {
+					Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+		            alert.showAndWait();
+				}
+	     		break;
 	     	case "Ice-cream":
 	     		product = new Product(name, Category.iceCream, intPrice, intQuantity);
+	     		try {
+					System.out.println("category: " + category);		
+					API.addProduct(product);
+				} catch (Exception e) {
+					Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+		            alert.showAndWait();
+				}
+	     		break;
 	     	case "Sause":
 	     		product = new Product(name, Category.sause, intPrice, intQuantity);
+	     		try {
+					System.out.println("category: " + category);		
+					API.addProduct(product);
+				} catch (Exception e) {
+					Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+		            alert.showAndWait();
+				}
+	     		break;
 	     	case "Side dish":
 	     		product = new Product(name, Category.sideDish, intPrice, intQuantity);
+	     		try {
+					System.out.println("category: " + category);		
+					API.addProduct(product);
+				} catch (Exception e) {
+					Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+		            alert.showAndWait();
+				}
+	     		break;
 	     	}
-			
-			try {
-				System.out.println("category: " + category);
-				
-				API.addProduct(product);
-			} catch (Exception e) {
-				Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
-	            alert.showAndWait();
-			}
 		}
-			
-		 //Add new product to database addProduct(product)
 		
 		 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	     stage.close();
