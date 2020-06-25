@@ -1,6 +1,4 @@
 package com.mycompany.onlinepizzaproject;
-
-import com.mycompany.onlinepizzaproject.backend.Pizza;
 import com.mycompany.onlinepizzaproject.backend.Product;
 import com.mycompany.onlinepizzaproject.backend.Product.Category;
 
@@ -19,14 +17,15 @@ public class ManagerAddProductController {
 	@FXML private TextField product_name_textfield;
 	@FXML private TextField product_price_textfield;
 	@FXML private TextField product_quantity_textfield;
-	@FXML private final ChoiceBox product_category_choicebox = new ChoiceBox<>(FXCollections.observableArrayList("Beverage", "Ice-cream", "Sause", "Side dish"));
+	@FXML private ChoiceBox<String> product_category_choicebox = new ChoiceBox<String>();
 	private Stage stage;
 	
 	 @SuppressWarnings("unchecked")
 	@FXML
 	 private void initialize(){
 		 mainController = MainController.getMainControllerInstance();
-		 product_category_choicebox.setItems(FXCollections.observableArrayList("Beverage", "Ice-cream", "Sause", "Side dish"));
+		 product_category_choicebox.setItems(FXCollections.observableArrayList("Select category", "Beverage", "Ice-cream", "Sause", "Side dish"));	
+		 product_category_choicebox.getSelectionModel().selectFirst();
 	 }
 	 
 	 @FXML

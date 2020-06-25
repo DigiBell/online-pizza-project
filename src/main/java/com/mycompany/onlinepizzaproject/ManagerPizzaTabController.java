@@ -2,7 +2,6 @@ package com.mycompany.onlinepizzaproject;
 
 import com.mycompany.onlinepizzaproject.backend.API;
 import com.mycompany.onlinepizzaproject.backend.Pizza;
-import com.mycompany.onlinepizzaproject.backend.Product;
 
 //import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -77,13 +76,11 @@ public class ManagerPizzaTabController {
     }
     
     
-    
-    
     private void showAddPizzaView() throws Exception {
     	Parent root = FXMLLoader.load(getClass().getResource("ManagerAddPizzaView.fxml"));
         Stage smallStage = new Stage();
         smallStage.setTitle("Add pizza");
-        smallStage.setScene(new Scene(root, 600, 600));
+        smallStage.setScene(new Scene(root, 600, 400));//width, height
         root.requestFocus();
         smallStage.showAndWait();
     }
@@ -92,8 +89,9 @@ public class ManagerPizzaTabController {
     	Parent root = FXMLLoader.load(getClass().getResource("ManagerEditPizzaView.fxml"));
         Stage smallStage = new Stage();
         smallStage.setTitle("Edit pizza");
-        smallStage.setScene(new Scene(root, 600, 600));
+        smallStage.setScene(new Scene(root, 600, 400));
         root.requestFocus();
         smallStage.showAndWait();
     }
 }
+
