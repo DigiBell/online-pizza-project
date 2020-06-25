@@ -20,7 +20,7 @@ public class EmployeeHomeController {
 	@FXML
 	private void initialize() {
 		mainController = MainController.getMainControllerInstance();
-		employee_welcome_label.setText("Welcome, " + mainController.getLoginAccount().getFirstName() + "!");
+		employee_welcome_label.setText("Welcome, " + mainController.getLoginUser().getFirstName() + "!");
 	}
 
 	/**

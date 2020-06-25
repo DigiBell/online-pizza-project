@@ -20,7 +20,7 @@ public class ManagerEditPizzaController {
 
     @FXML private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        pizza = mainController.getPizzaToEdit();
+        pizza = mainController.getPizzaToChange();
         ObservableList<String> pizzaLines = FXCollections.observableArrayList();
         pizzaLines.add("Ingredient name: " + pizza.getName());
         pizzaLines.add("DescriptionSv: " + pizza.getDescriptionSv());
@@ -36,7 +36,7 @@ public class ManagerEditPizzaController {
         	if(!price.trim().isEmpty()) {
         		int price30cm = Integer.valueOf(pizza_edit_price_field.getText());
         		
-        		//Change price for pizza in database. Use pizza.
+        		//Change price for pizza in database. changePizza(pizza, price30cm)
         	}
         }
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

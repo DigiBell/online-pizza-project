@@ -17,7 +17,7 @@ public class ManagerHomeController {
     @FXML
     private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        manager_welcome_label.setText("Welcome, " + mainController.getLoginAccount().getFirstName() + "!");
+        manager_welcome_label.setText("Welcome, " + mainController.getLoginUser().getFirstName() + "!");
     }
 
     /**

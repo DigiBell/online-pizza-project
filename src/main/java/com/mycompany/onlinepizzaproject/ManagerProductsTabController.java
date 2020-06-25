@@ -60,7 +60,7 @@ public class ManagerProductsTabController {
     private void editProduct(ActionEvent event)throws Exception{
     	Product productSelected = productsTable.getSelectionModel().getSelectedItem();
     	if(productSelected != null) {
-    		mainController.setProductToEdit(productSelected);
+    		mainController.setProductToChange(productSelected);
     		showEditProductView();
     	}
     }

@@ -1,6 +1,6 @@
 package com.mycompany.onlinepizzaproject;
 
-import com.mycompany.onlinepizzaproject.Model.Ingredient;
+import com.mycompany.onlinepizzaproject.backend.Ingredient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,8 +36,9 @@ public class ManagerIngredientsTabController {
     @FXML
     private void showAll(ActionEvent event){
         ingredientsTable.getItems().clear();
-        mainController.getIngredientsFromDatabase();
-        ingredientsTable.getItems().addAll(mainController.getIngredientList());
+        
+        //mainController.getIngredientsFromDatabase();
+        //ingredientsTable.getItems().addAll(mainController.getIngredientList());
     }
 
     @FXML

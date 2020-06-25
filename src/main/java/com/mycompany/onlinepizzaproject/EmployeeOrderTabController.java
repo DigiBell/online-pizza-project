@@ -2,8 +2,13 @@ package com.mycompany.onlinepizzaproject;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
-import com.mycompany.onlinepizzaproject.Model.Order;
+import java.util.List;
+
+import com.mycompany.onlinepizzaproject.backend.Order;
+import com.mycompany.onlinepizzaproject.backend.API;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,16 +50,16 @@ public class EmployeeOrderTabController {
      */
     @FXML
     private void showAll(ActionEvent event){ // NEED A CHANGE, GET ORDERS WITH STATUS PLACED FROM DATABASE, OR SORT ON CLIENT SIDE.
-        LocalDate dateFrom = orders_from_date_picker.getValue();
+    	LocalDate dateFrom = orders_from_date_picker.getValue();
         LocalDate dateTo = orders_to_date_picker.getValue();
         ordersTable.getItems().clear();
-        if(dateFrom != null && dateTo != null){
-            mainController.getOrdersFromDatabase(Date.from(dateFrom.atStartOfDay(ZoneId.systemDefault()).toInstant()),
-            Date.from(dateTo.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        }else{
-            mainController.getOrdersFromDatabase();
-        }
-        ordersTable.getItems().addAll(mainController.getOrderList());
+        Order[] orders = API.getOrders();
+        List<Order> orderList = new ArrayList<>();
+        for (int i = 0; i < orders.length; i++) {
+        	orderList.add(orders[i]);
+		}
+        
+        ordersTable.getItems().addAll(orderList);
     }
     
     /**
