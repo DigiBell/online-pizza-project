@@ -19,8 +19,8 @@ public class OrderDetailsController {
 
     @FXML private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        order_status_choicebox.setItems(FXCollections.observableArrayList("In progress", "Done"));
-        order_status_choicebox.setTooltip(new Tooltip("Select status"));
+        order_status_choicebox.setItems(FXCollections.observableArrayList("Select status", "In progress", "Done"));
+        order_status_choicebox.getSelectionModel().selectFirst();
         Order order = mainController.getOrderToChange();
         ObservableList<String> orderLines = FXCollections.observableArrayList();
         orderLines.add("Order id: "  );
@@ -38,9 +38,18 @@ public class OrderDetailsController {
     	String status = (String) order_status_choicebox.getSelectionModel().getSelectedItem();
     	System.out.println("Category: " + status);
     	
-    	//change order status, 
-    	//delete from orders collection, 
-    	//add to orders history collection
+    	switch(status) {
+		case "Select status":
+			break;
+    	case "In progress":
+    		//change order status 
+    		break;
+    	case "Done":
+    		//change order status 
+        	//delete from orders collection 
+        	//add to orders history collection
+    		break;
+    	}
     	
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();
