@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane fx:id="OrdersTab" prefHeight="620.0" prefWidth="650.0" style="-fx-background-color: orange;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.onlinepizzaproject.ManagerOrdersTabController">
+<BorderPane fx:id="Employee" prefHeight="620.0" prefWidth="650.0" style="-fx-background-color: orange;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.onlinepizzaproject.EmployeeOrderTabController">
     <center>
         <TableView fx:id="ordersTable" layoutY="50.0" prefHeight="500.0" prefWidth="650.0">
             <columns>
@@ -27,7 +27,7 @@
     <bottom>
         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="orders_show_details_button" onAction="#showOrderDetails" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Show details">
+            <Button fx:id="orders_show_details_button" mnemonicParsing="false" onAction="#showOrderDetails" prefHeight="30.0" prefWidth="100.0" text="Show details">
                <HBox.margin>
                   <Insets left="500.0" top="25.0" />
                </HBox.margin>

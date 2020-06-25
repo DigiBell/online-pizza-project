@@ -27,20 +27,11 @@
     <bottom>
         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="orders_show_details_button" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Show details">
+            <Button fx:id="orders_show_details_button" onAction="#showOrderDetails" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Show details">
                <HBox.margin>
-                  <Insets left="50.0" top="25.0" />
+                  <Insets left="500.0" top="25.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Mark as DONE">
-               <HBox.margin>
-                  <Insets left="100.0" top="25.0" />
-               </HBox.margin>
-            </Button>
-                <Button fx:id="orders_show_all_button" mnemonicParsing="false" onAction="#showAll" prefHeight="30.0" prefWidth="100.0" text="Show all">
-                    <HBox.margin>
-                        <Insets left="100.0" top="25.0" />
-                    </HBox.margin></Button>
          </children>
         </HBox>
     </bottom>
@@ -63,6 +54,10 @@
                     <HBox.margin>
                         <Insets top="25.0" />
                     </HBox.margin></DatePicker>
+                <Button fx:id="orders_show_all_button" mnemonicParsing="false" onAction="#showAll" prefHeight="30.0" prefWidth="100.0" text="Show all">
+                    <HBox.margin>
+                        <Insets left="100.0" top="25.0" />
+                    </HBox.margin></Button>
             </children>
         </HBox>
     </top>
