@@ -1,8 +1,6 @@
 package com.mycompany.onlinepizzaproject;
 
-import com.mycompany.onlinepizzaproject.backend.Pizza;
 import com.mycompany.onlinepizzaproject.backend.Product;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

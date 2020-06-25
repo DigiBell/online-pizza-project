@@ -27,15 +27,15 @@ public class ManagerProductsTabController {
     // @FXML private TableColumn<Product, String> products_size_column;
     @FXML private TableColumn<Product, Integer> products_quantity_column;
     @FXML private TableColumn<Product, Integer> products_unit_price_column;
-    @FXML private ChoiceBox product_category_choicebox = new ChoiceBox<>(FXCollections.observableArrayList("Beverage", "Ice-cream", "Sause", "Side dish"));
+    @FXML private ChoiceBox<String> product_category_choicebox = new ChoiceBox<String>();
     @FXML private TextField product_name_textfield;
     
 
-    @SuppressWarnings("unchecked")
-	@FXML
+    @FXML
     private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        product_category_choicebox.setItems(FXCollections.observableArrayList("Beverage", "Ice-cream", "Sause", "Side dish"));
+        product_category_choicebox.setItems(FXCollections.observableArrayList("Select category", "Beverage", "Ice-cream", "Sause", "Side dish"));
+        product_category_choicebox.getSelectionModel().selectFirst();
         // products_product_id_column.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
         products_category_column.setCellValueFactory(new PropertyValueFactory<>("Category"));
         products_name_column.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -53,9 +53,7 @@ public class ManagerProductsTabController {
     private void deleteProduct(ActionEvent event){
     	Product productSelected = productsTable.getSelectionModel().getSelectedItem();
     	System.out.println("Selected product to delete :" + productSelected.toString());
-
     	//Delete product from database
-    	//mainController.deleteProductFromDatabase(productSelected);
     }
     
     @FXML
@@ -120,7 +118,6 @@ public class ManagerProductsTabController {
     }
     
     
-    
     private void showAddProductView() throws Exception {
     	Parent root = FXMLLoader.load(getClass().getResource("ManagerAddProductView.fxml"));
         Stage smallStage = new Stage();
@@ -139,3 +136,4 @@ public class ManagerProductsTabController {
         smallStage.showAndWait();
     }
 }
+
