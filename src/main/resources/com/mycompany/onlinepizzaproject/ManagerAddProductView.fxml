@@ -32,7 +32,7 @@ fx:controller="com.mycompany.onlinepizzaproject.ManagerAddProductController">
             <TextField fx:id="product_name_textfield" prefWidth="300.0" GridPane.columnIndex="1" />
             <TextField fx:id="product_price_textfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Price" GridPane.rowIndex="2" />
-            <ChoiceBox value="Category" fx:id="product_category_choicebox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ChoiceBox fx:id="product_category_choicebox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Quantity" GridPane.rowIndex="3" />
             <TextField fx:id="product_quantity_textfield" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
@@ -54,12 +54,12 @@ fx:controller="com.mycompany.onlinepizzaproject.ManagerAddProductController">
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="new_product_add_button" onAction="#addProduct"   mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Add">
+            <Button fx:id="new_product_add_button" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Add">
                <HBox.margin>
                   <Insets left="200.0" top="25.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="new_product_cancel_button" onAction="#cancel"  mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Cancel">
+            <Button fx:id="new_product_cancel_button" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Cancel">
                <HBox.margin>
                   <Insets left="100.0" top="25.0" />
                </HBox.margin>
