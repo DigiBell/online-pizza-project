@@ -34,7 +34,7 @@ public class ManagerOrdersTabController {
     @FXML
     private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        //orders_order_id_column.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
+        orders_order_id_column.setCellValueFactory(new PropertyValueFactory<>("Id"));
         orders_date_column.setCellValueFactory(new PropertyValueFactory<>("Date"));
         orders_user_email_column.setCellValueFactory(new PropertyValueFactory<>("Customer"));
         orders_total_price_column.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));

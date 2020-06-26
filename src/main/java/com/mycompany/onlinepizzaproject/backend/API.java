@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import com.mycompany.onlinepizzaproject.backend.MongoDB.Collection;
 import com.mycompany.onlinepizzaproject.backend.Order.PizzaOrder;
@@ -348,16 +349,10 @@ public class API {
 		return mongo.insertDocument(new Order(json).toDocument(), Collection.Order);
 	}
 	
-	
-	
-	public static void modifyOrderStatus(Order order) {
-		System.out.println("modify order: "+order.getId());
-		//mongo.updateDocument("_id", order.getId(), new Document("status",order.getStatus().toString()), Collection.Order);
-		mongo.updateDocument("customer", "test@mau.se", new Document("status",order.getStatus().toString()), Collection.Order);
 		
+	public static void modifyOrderStatus(Order order) {
+		mongo.updateDocument(new ObjectId(order.getId()), new Document("status",order.getStatus().toString()), Collection.Order);		
 	}
-
-	
 	
 	public static List<Order> getOrders() {
 		ArrayList<Document> docs = mongo.getAllInCollection(Collection.Order);
@@ -365,9 +360,7 @@ public class API {
 		ArrayList<Order> orders = new ArrayList<Order>();
 		
 		for (Document doc : docs) {
-			orders.add(new Order(doc));
-			System.out.println(doc);
-			
+			orders.add(new Order(doc));			
 		}
 		
 		return orders;

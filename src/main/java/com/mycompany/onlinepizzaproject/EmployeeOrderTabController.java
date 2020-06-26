@@ -37,8 +37,8 @@ public class EmployeeOrderTabController {
     @FXML
     private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        orders_order_id_column.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
-        orders_user_id_column.setCellValueFactory(new PropertyValueFactory<>("UserId"));
+        orders_order_id_column.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        orders_user_id_column.setCellValueFactory(new PropertyValueFactory<>("Customer"));
         orders_date_column.setCellValueFactory(new PropertyValueFactory<>("Date"));
         orders_products_column.setCellValueFactory(new PropertyValueFactory<>("OrderLines"));
         orders_total_price_column.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));

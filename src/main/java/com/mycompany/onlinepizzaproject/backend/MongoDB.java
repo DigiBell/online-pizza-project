@@ -9,6 +9,7 @@ import com.mongodb.client.model.Indexes;
 import com.mongodb.client.MongoCollection;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import com.mongodb.client.MongoCursor;
 import static com.mongodb.client.model.Filters.*;
@@ -103,7 +104,11 @@ public class MongoDB {
 		System.out.println(result);
 	}
 	
-	
+	public void updateDocument(ObjectId id, Document doc, Collection col) {
+		MongoCollection<Document> collection = database.getCollection(col.toString());		
+		UpdateResult result = collection.updateOne(eq("_id", id), new Document("$set", doc));
+		System.out.println(result);
+	}
 	
 	
 	/**
