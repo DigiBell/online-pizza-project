@@ -23,7 +23,7 @@ public class OrderDetailsController {
 
     @FXML private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        order_status_choicebox.setItems(FXCollections.observableArrayList("Select status", "In progress", "Done"));
+        order_status_choicebox.setItems(FXCollections.observableArrayList("Select status", "In progress", "Done", "Cancelled"));
         order_status_choicebox.getSelectionModel().selectFirst();
         order= mainController.getOrderToChange();
         ObservableList<String> orderLines = FXCollections.observableArrayList();
@@ -54,6 +54,10 @@ public class OrderDetailsController {
     		API.modifyOrderStatus(this.order);
         	//delete from orders collection 
         	//add to orders history collection
+    		break;
+    	case "Cancelled":
+    		this.order.setStatus(Status.cancelled);
+    		API.modifyOrderStatus(this.order);
     		break;
     	}
     	

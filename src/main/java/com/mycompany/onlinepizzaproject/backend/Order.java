@@ -13,7 +13,7 @@ public class Order {
 		placed,
 		inProgress,
 		done,
-		canceled
+		cancelled
 	}
 
 	public static class PizzaOrder{
