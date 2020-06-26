@@ -1,5 +1,6 @@
 package com.mycompany.onlinepizzaproject;
 
+import com.mycompany.onlinepizzaproject.backend.API;
 import com.mycompany.onlinepizzaproject.backend.Ingredient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,29 +17,31 @@ import javafx.stage.Stage;
 public class ManagerIngredientsTabController {
     @FXML private MainController mainController;
     @FXML private TableView<Ingredient> ingredientsTable;
-    @FXML private TableColumn<Ingredient, String> ingredients_ingredient_id_column;
+//    @FXML private TableColumn<Ingredient, String> ingredients_ingredient_id_column;
     @FXML private TableColumn<Ingredient, String> ingredients_name_column;
-    @FXML private TableColumn<Ingredient, String> ingredients_description_column;
-    @FXML private TableColumn<Ingredient, String> ingredients_quantity_column;
-    @FXML private TableColumn<Ingredient, String> ingredients_units_column;
+    @FXML private TableColumn<Ingredient, Double> ingredients_price_column;
+    @FXML private TableColumn<Ingredient, String> ingredients_stock_column;
+//    @FXML private TableColumn<Ingredient, String> ingredients_description_column;
+//    @FXML private TableColumn<Ingredient, String> ingredients_quantity_column;
+//    @FXML private TableColumn<Ingredient, String> ingredients_units_column;
     private Alert alert;
 
     @FXML
     private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        ingredients_ingredient_id_column.setCellValueFactory(new PropertyValueFactory<>("IngredientId"));
+        //ingredients_ingredient_id_column.setCellValueFactory(new PropertyValueFactory<>("IngredientId"));
         ingredients_name_column.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        ingredients_description_column.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        ingredients_quantity_column.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
-        ingredients_units_column.setCellValueFactory(new PropertyValueFactory<>("Units"));
+        ingredients_price_column.setCellValueFactory(new PropertyValueFactory<>("PricePerKg"));
+        ingredients_stock_column.setCellValueFactory(new PropertyValueFactory<>("Stock"));
+//        ingredients_description_column.setCellValueFactory(new PropertyValueFactory<>("Description"));
+//        ingredients_quantity_column.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+//        ingredients_units_column.setCellValueFactory(new PropertyValueFactory<>("Units"));
     }
 
     @FXML
     private void showAll(ActionEvent event){
         ingredientsTable.getItems().clear();
-        
-        //mainController.getIngredientsFromDatabase();
-        //ingredientsTable.getItems().addAll(mainController.getIngredientList());
+        ingredientsTable.getItems().addAll(API.getIngredients());
     }
 
     @FXML

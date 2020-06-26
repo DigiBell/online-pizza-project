@@ -215,6 +215,18 @@ public class API {
 		return mongo.insertDocument(ingredient.toDocument(), Collection.Ingredient);
 	}
 	
+	public static List<Ingredient> getIngredients(){
+		ArrayList<Document> docs = mongo.getAllInCollection(Collection.Ingredient);
+		
+		List<Ingredient> ingredients = new ArrayList<Ingredient>();
+		
+		for (Document doc : docs) {
+			ingredients.add(new Ingredient(doc));
+		}
+		
+		return ingredients;
+	}
+	
 	public static ArrayList<Ingredient> getIngredientsWithStockBelow(Measurement measurement) {
 		ArrayList<Ingredient> ingredients = new ArrayList<>();
 		
@@ -229,6 +241,10 @@ public class API {
 		}
 		
 		return ingredients;
+	}
+	
+	public static void updateIngredient(Ingredient ingredient) {
+		mongo.updateDocument("name", ingredient.getName(), new Document("stock", ingredient.getStock().toString()), Collection.Ingredient);
 	}
 	
 	// *************
