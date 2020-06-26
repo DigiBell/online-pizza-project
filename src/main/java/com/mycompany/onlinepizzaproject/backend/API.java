@@ -26,6 +26,12 @@ public class API {
 		mongo.createIndexes(Collection.Product);
 	}
 	
+	public static void rebuildDB() {
+		mongo.dropCollection(Collection.Pizza);
+		mongo.dropCollection(Collection.Ingredient);
+		Import.pizzasAndIngredients();
+	}
+	
 	/**
 	 * Create a customer
 	 * @param email
@@ -177,12 +183,8 @@ public class API {
 		return mongo.insertDocument(pizza.toDocument(), Collection.Pizza);
 	}
 	
-	public static void addPizzas(List<Document> pizzas) {
-		System.out.println("Pizzas: " + pizzas.size());
-		
-		int i = mongo.insertManyDocuments(pizzas, Collection.Pizza);
-		
-		System.out.println("inserted: " + i);
+	public static void addPizzas(List<Document> pizzas) {		
+		mongo.insertManyDocuments(pizzas, Collection.Pizza);
 	}
 	
 	public static void deletePizza(Pizza pizza) {
@@ -213,6 +215,10 @@ public class API {
 		}
 		
 		return mongo.insertDocument(ingredient.toDocument(), Collection.Ingredient);
+	}
+	
+	public static void addIngredients(List<Document> ingredients) {
+		mongo.insertManyDocuments(ingredients, Collection.Ingredient);
 	}
 	
 	public static List<Ingredient> getIngredients(){

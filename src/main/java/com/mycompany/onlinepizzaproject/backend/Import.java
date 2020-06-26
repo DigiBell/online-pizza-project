@@ -1,138 +1,85 @@
 package com.mycompany.onlinepizzaproject.backend;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
-
 import org.bson.Document;
 
+import com.mycompany.onlinepizzaproject.backend.Measurement.Unit;
 import com.mycompany.onlinepizzaproject.backend.Product.Category;
 
 
+public class Import {
 
-public class Import implements ActionListener {
-
-	private JFrame frame;
-	private JPanel mainPanel;
-	private JPanel btnPanel;
-	private JButton pizzaBtn;
-	private JButton beverageBtn;
-	private JPanel logPanel;
-	private JTextArea logTextArea;
-	private JScrollPane logScrollPane;
-
-	public Import() {
-
-		SwingUtilities.invokeLater(() -> {
-
-			frame = new JFrame("NoSQL import");
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-			mainPanel = new JPanel();
-			mainPanel.setPreferredSize(new Dimension(600, 800));
-
-			btnPanel = new JPanel(new GridLayout(1, 2));
-
-			pizzaBtn = new JButton("Pizza");
-			pizzaBtn.addActionListener(this);
-			btnPanel.add(pizzaBtn);
-
-			beverageBtn = new JButton("Beverage");
-			beverageBtn.addActionListener(this);
-			btnPanel.add(beverageBtn);
-
-			logPanel = new JPanel();
-			logPanel.setPreferredSize(new Dimension(600, 600));
-
-			logTextArea = new JTextArea();
-			logTextArea.setLineWrap(true);
-			logTextArea.setDisabledTextColor(Color.BLACK);
-
-			logScrollPane = new JScrollPane(logTextArea);
-			logScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-			logScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-			logScrollPane.setPreferredSize(new Dimension(580, 580));
-
-			logPanel.add(logScrollPane);
-
-			mainPanel.add(btnPanel);
-			mainPanel.add(logPanel);
-
-			frame.setContentPane(mainPanel);
-			frame.pack();
-			frame.setVisible(true);		
-		});
-	}
-
-	public static void main(String[] args) {
-		new Import();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == pizzaBtn) {
-			importPizzas();
-		} else if (e.getSource() == beverageBtn) {
-			importBeverages();
+	
+	private static List<String> getLines(String file) {
+		List<String> lines = null;
+		
+		try {
+			lines = Files.readAllLines(Paths.get("./text/" + file));		
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		
+		return lines;
 	}
 	
-	private void importPizzas() {
-		String[] lines = logTextArea.getText().split("\\r?\\n");
-		
-		System.out.println("Lines: " + lines.length);
-		
+	public static void pizzasAndIngredients() {
+		System.out.println("IMPORTING PIZZAS AND INGREDIENTS");
+		List<String> lines = getLines("pizza.txt");
+				
 		int counter = 0;
 		
-		String name = "";
-		String descriptionSv = "";
-		String descriptionEn = "";
-		int p20 = 0;
-		int p30 = 0;
-		int p40 = 0;
+		Pizza pizza = null;
 		
+		Random random = new Random();
+				
 		List<Document> pizzas = new ArrayList<>();
+		List<String> ingredients = new ArrayList<>();
 		
 		for (String line : lines) {
-			System.out.println("counter: " + counter);
 			switch (counter) {
 			case 0:
-				name = line;
+				pizza = new Pizza();
+				pizza.setName(line);
 				break;
 			case 1:
-				descriptionSv = line;
+				pizza.setDescriptionSv(line);
 				break;
 			case 2:
-				descriptionEn = line.substring(1, line.length()-1);
+				pizza.setDescriptionEn(line.substring(1, line.length()-1));
+				
+				// INGREDIENTS
+				String[] ingreds = pizza.getDescriptionEn().split(",|and");
+				
+				for (String str : ingreds) {
+					str = str.trim().toLowerCase();
+					
+					if(!ingredients.contains(str)) {
+						ingredients.add(str);
+					}
+					
+					pizza.addIngredient(str, new Measurement(random.nextInt(90)+10, Unit.g));			
+				}
+				
+				break;
+			case 3:
+				pizza.setPrice20cm(Integer.parseInt(line));
 				break;
 			case 4:
-				p20 = Integer.parseInt(line.substring(0, line.indexOf(':')));
+				pizza.setPrice30cm(Integer.parseInt(line));
 				break;
 			case 5:
-				p30 = Integer.parseInt(line.substring(0, line.indexOf(':')));
+				pizza.setPrice40cm(Integer.parseInt(line));
 				break;
 			case 6:
-				p40 = Integer.parseInt(line.substring(0, line.indexOf(':')));
-				break;
-			case 7:
+				pizza.setPriceGf30cm(Integer.parseInt(line));
 				
-				Pizza p = new Pizza(name, p20, p30, p40, descriptionSv, descriptionEn);
-				
-				System.out.println(p.toDocument().toJson());
-				
-				pizzas.add(p.toDocument());
+				pizzas.add(pizza.toDocument());
 				
 				counter = -1;
 				break;
@@ -144,12 +91,20 @@ public class Import implements ActionListener {
 		}
 		
 		API.addPizzas(pizzas);
+		
+		List<Document> ingredientDocs = new ArrayList<>();
+		
+		for (String string : ingredients) {
+			ingredientDocs.add(new Ingredient(string, random.nextInt(200)+20, new Measurement(random.nextInt(45)+5, Unit.kg)).toDocument());
+		}
+		
+		API.addIngredients(ingredientDocs);
+		
+		System.out.println("PIZZAS AND INGREDIENTS IMPORTED");
 	}
 	
-	private void importBeverages() {
-		String[] lines = logTextArea.getText().split("\\r?\\n");
-		
-		System.out.println("Lines: " + lines.length);
+	public static void importBeverages() {
+		List<String> lines = getLines("beverages.txt");
 		
 		int counter = 0;
 		

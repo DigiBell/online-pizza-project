@@ -49,7 +49,7 @@ Ost, tomatsås, marinerad kyckling, marinerad biff, nachoschips, vitlök, majs o
 139
 08 BIFFEN
 Ost, tomatsås, marinerad biff i strimlor, bacon och vitlök 
-(Cheese, tomato sauce, stripe of marinated beef, bacon and garlic)
+(Cheese, tomato sauce, strips of marinated beef, bacon and garlic)
 69
 115
 165
@@ -119,7 +119,7 @@ Ost, tomatsås, marinerad kyckling, chili, pesto och tomatskivor
 139
 18 VEGETARIANEN
 Ost, tomatsås, ananas, champinjoner, lök, majs och paprika
-(Cheese, tomato sauce, pineapple, mushrooms, onion, sweet corn and sweet pepper)
+(Cheese, tomato sauce, pineapple, mushroom, onion, sweet corn and sweet pepper)
 59
 99
 155

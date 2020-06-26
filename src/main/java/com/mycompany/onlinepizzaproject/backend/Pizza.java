@@ -23,6 +23,10 @@ public class Pizza {
 	private String descriptionEn;
 	private HashMap<String, Measurement> ingredients;
 	
+	public Pizza() {
+		this.ingredients = new HashMap<String, Measurement>();
+	}
+	
 	public Pizza(String name, int price20cm, int price30cm, int price40cm, String descriptionSv, String descriptionEn) {
 		this.name = name;
 		this.price20cm = price20cm;

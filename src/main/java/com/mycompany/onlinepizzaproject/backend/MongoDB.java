@@ -14,7 +14,6 @@ import org.bson.types.ObjectId;
 import com.mongodb.client.MongoCursor;
 import static com.mongodb.client.model.Filters.*;
 
-import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertManyResult;
 import com.mongodb.client.result.InsertOneResult;
 
@@ -26,7 +25,7 @@ import java.util.List;
 /**
  * Handles the connection to MongoDB
  * 
- * @author Andr� Hansson
+ * @author André Hansson
  */
 public class MongoDB {
 
@@ -34,8 +33,6 @@ public class MongoDB {
 	
 	public enum Collection {
 		User,
-		Customer,
-		Employee,
 		Order,
 		Product,
 		Pizza,
@@ -63,6 +60,15 @@ public class MongoDB {
 			instance = new MongoDB();
 		}
 		return instance;
+	}
+	
+	public void dropDatabase() {
+		database.drop();
+	}
+	
+	public void dropCollection(Collection col) {
+		MongoCollection<Document> collection = database.getCollection(col.toString());
+		collection.drop();
 	}
 	
 	public void createIndexes(Collection col) {

@@ -1,6 +1,9 @@
 package com.mycompany.onlinepizzaproject;
 
+import java.util.Map;
+
 import com.mycompany.onlinepizzaproject.backend.API;
+import com.mycompany.onlinepizzaproject.backend.Measurement;
 import com.mycompany.onlinepizzaproject.backend.Pizza;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +30,13 @@ public class ManagerEditPizzaController {
         pizzaLines.add("DescriptionSv: " + pizza.getDescriptionSv());
         pizzaLines.add("DescriptionEn: " + pizza.getDescriptionEn());
         pizzaLines.add("Price: " + pizza.getPrice());
+        
+        pizzaLines.add("Ingredients:");
+        
+        for (Map.Entry<String, Measurement> entry : pizza.getIngredients().entrySet()) {
+			pizzaLines.add(entry.getKey() + ": " + entry.getValue());
+		}
+        
         pizza_edit_list_view.setItems(pizzaLines);
     }
 

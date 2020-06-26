@@ -22,16 +22,11 @@ public class App extends Application {
 
     public static void main(String[] args) {
         System.out.println("Main");
-        API.createIndexes();
-        launch(args);
-
        
+        //API.rebuildDB();
         
-//        try{
-//            MainController.getMainControllerInstance().generateProductCollection();
-//        }catch (Exception e){ }
-//
-//
-//        MongoDBController.getMongoDBControllerInstance().initializeDatabase();
+        API.createIndexes();
+        
+        launch(args);
     }
 }
