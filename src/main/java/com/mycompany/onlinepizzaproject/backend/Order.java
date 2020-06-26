@@ -12,69 +12,122 @@ public class Order {
 	public enum Status{
 		placed,
 		inProgress,
-		done
+		done,
+		canceled
 	}
 
 	public static class PizzaOrder{
-		public Pizza pizza;
+		public String pizzaName;
 		public Size size;
 		public int amount;
+		public int unitPrice;
 		
 		public PizzaOrder(Pizza pizza, Size size, int amount) {
-			this.pizza = pizza;
+			this.pizzaName = pizza.getName();
 			this.size = size;
 			this.amount = amount;
+			this.unitPrice = pizza.getPriceForSize(size);
 		}
 		
-		public PizzaOrder(Document doc) {
-			try {
-				this.pizza = API.getPizza(doc.getString("pizza"));
-			} catch (Exception e) {
-				//e.printStackTrace();
-				// This pizza no longer exists
-				this.pizza = new Pizza(doc.getString("pizza"), 0, 0, 0, "", "");
-			}
+		public PizzaOrder(Document doc, boolean getPizza) {
+			
+			this.pizzaName = doc.getString("pizza");
 			this.size = Pizza.getSizeFromString(doc.getString("size"));
 			this.amount = doc.getInteger("amount");
+			
+			if(getPizza) {
+				try {	
+					Pizza pizza = API.getPizza(pizzaName);
+					this.unitPrice = pizza.getPriceForSize(size);					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {				
+				try {
+					this.unitPrice = doc.getInteger("unitPrice");
+				} catch (NullPointerException e) {
+					// OLD Order. Ignore exception. 
+				}
+			}
+			
+//			try {
+//				this.pizzaName = API.getPizza(doc.getString("pizza"));
+//			} catch (Exception e) {
+//				//e.printStackTrace();
+//				// This pizza no longer exists
+//				this.pizzaName = new Pizza(doc.getString("pizza"), 0, 0, 0, "", "");
+//			}
+
+//			this.pizzaName = doc.getString("pizza");
+//			this.size = Pizza.getSizeFromString(doc.getString("size"));
+//			this.amount = doc.getInteger("amount");
+//			
+//			try {
+//				this.unitPrice = doc.getInteger("unitPrice");
+//			} catch (NullPointerException e) {
+//				// OLD Order. Ignore exception. 
+//			}
+			
 		}
 		
 		public Document toDocument() {
-			return new Document("pizza", pizza.getName()).append("size", Pizza.getSizeString(size)).append("amount", amount);
+			return new Document("pizza", pizzaName).append("size", Pizza.getSizeString(size)).append("amount", amount).append("unitPrice", unitPrice);
 		}
 		
 		@Override
 		public String toString() {
-			return pizza.getName() + ": " + amount;
+			return "Pizza: " + pizzaName + " " + Pizza.getSizeString(size) + ". Amount: " + amount + ". Unit price: " + unitPrice;
 		}
 	}
 	
 	public static class ProductOrder{
-		public Product product;
+		public String productName;
 		public int amount;
+		public int unitPrice;
 		
 		public ProductOrder(Product product, int amount) {
-			this.product = product;
+			this.productName = product.getName();
 			this.amount = amount;
+			this.unitPrice = product.getPrice();
 		}
 		
-		public ProductOrder(Document doc) {
-			try {
-				this.product = API.getProduct(doc.getString("product"));
-			} catch (Exception e) {
-				//e.printStackTrace();
-				// Product does not exist
-				this.product = new Product(doc.getString("product"), null, 0, 0);
-			}
+		public ProductOrder(Document doc, boolean getProduct) {
+//			try {
+//				this.productName = API.getProduct(doc.getString("product"));
+//			} catch (Exception e) {
+//				//e.printStackTrace();
+//				// Product does not exist
+//				this.productName = new Product(doc.getString("product"), null, 0, 0);
+//			}
+			this.productName = doc.getString("product");
 			this.amount = doc.getInteger("amount");
+			
+			if(getProduct) {
+				try {
+					Product product = API.getProduct(productName);
+					this.unitPrice = product.getPrice();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				try {
+					this.unitPrice = doc.getInteger("unitPrice");
+				} catch (NullPointerException e) {
+					// OLD Order. Ignore exception. 
+				}
+			}
+			
+				
+			
 		}
 		
 		public Document toDocument() {
-			return new Document("product", product.getName()).append("amount", amount);
+			return new Document("product", productName).append("amount", amount).append("unitPrice", unitPrice);
 		}
 		
 		@Override
 		public String toString() {
-			return product.getName() + ": " + amount;
+			return "Product: " + productName + ". Amount: " + amount + ". Unit price: " + unitPrice;
 		}
 	}
 	
@@ -107,7 +160,7 @@ public class Order {
 		List<Document> pizzaDocs = pizzas.get("pizzas", List.class);
 		this.pizzas = new ArrayList<PizzaOrder>();
 		for (Document document : pizzaDocs) {
-			this.pizzas.add(new PizzaOrder(document));
+			this.pizzas.add(new PizzaOrder(document, false));
 		}
 		
 		//this.products = products;
@@ -115,7 +168,7 @@ public class Order {
 		List<Document> productDocs = products.get("products", List.class);
 		this.products = new ArrayList<ProductOrder>();
 		for (Document document : productDocs) {
-			this.products.add(new ProductOrder(document));
+			this.products.add(new ProductOrder(document, false));
 		}
 		
 		this.comment = comment;
@@ -143,7 +196,7 @@ public class Order {
 		List<Document> pizzaDocs = doc.get("pizzas", List.class);
 		this.pizzas = new ArrayList<PizzaOrder>();
 		for (Document document : pizzaDocs) {
-			pizzas.add(new PizzaOrder(document));
+			pizzas.add(new PizzaOrder(document, false));
 		}
 		
 		//this.products = products;
@@ -151,7 +204,7 @@ public class Order {
 		List<Document> productDocs = doc.get("products", List.class);
 		this.products = new ArrayList<ProductOrder>();
 		for (Document document : productDocs) {
-			products.add(new ProductOrder(document));
+			products.add(new ProductOrder(document, false));
 		}
 		
 		this.comment = doc.getString("comment");
@@ -169,7 +222,7 @@ public class Order {
 		List<Document> pizzaDocs = doc.get("pizzas", List.class);
 		this.pizzas = new ArrayList<PizzaOrder>();
 		for (Document document : pizzaDocs) {
-			pizzas.add(new PizzaOrder(document));
+			pizzas.add(new PizzaOrder(document, true));
 		}
 		
 		//this.products = products;
@@ -177,7 +230,7 @@ public class Order {
 		List<Document> productDocs = doc.get("products", List.class);
 		this.products = new ArrayList<ProductOrder>();
 		for (Document document : productDocs) {
-			products.add(new ProductOrder(document));
+			products.add(new ProductOrder(document, true));
 		}
 		
 		this.totalPrice = calculateTotalPrice();
@@ -220,11 +273,13 @@ public class Order {
 		double total = 0;
 		
 		for (PizzaOrder p : pizzas) {
-			total += p.pizza.getPriceForSize(p.size) * p.amount;
+			//total += p.pizzaName.getPriceForSize(p.size) * p.amount;
+			total += p.unitPrice * p.amount;
 		}
 		
 		for (ProductOrder p : products) {
-			total += p.product.getPrice() * p.amount;
+			//total += p.productName.getPrice() * p.amount;
+			total += p.unitPrice * p.amount;
 		}
 		
 		return total;
@@ -273,7 +328,6 @@ public class Order {
 	
 	public Document toDocument() {
 		Document doc = new Document("customer", customer)
-				.append("_id",id)
 				.append("date", date)
 				.append("totalPrice", totalPrice);
 		
