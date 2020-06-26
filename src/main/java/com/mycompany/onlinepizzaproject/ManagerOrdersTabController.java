@@ -37,8 +37,8 @@ public class ManagerOrdersTabController {
         //orders_order_id_column.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
         orders_date_column.setCellValueFactory(new PropertyValueFactory<>("Date"));
         orders_user_email_column.setCellValueFactory(new PropertyValueFactory<>("Customer"));
-        orders_status_column.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
-        orders_total_price_column.setCellValueFactory(new PropertyValueFactory<>("Status"));
+        orders_total_price_column.setCellValueFactory(new PropertyValueFactory<>("TotalPrice"));
+        orders_status_column.setCellValueFactory(new PropertyValueFactory<>("Status"));
     }
     
     /**
