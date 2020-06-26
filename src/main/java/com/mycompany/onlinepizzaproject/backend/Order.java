@@ -85,6 +85,8 @@ public class Order {
 	private ArrayList<ProductOrder> products;
 	private String comment;
 	private Status status;
+	private String id;
+	
 
 	public Order(String customer, ArrayList<PizzaOrder> pizzas, ArrayList<ProductOrder> products, String comment) {
 		this.customer = customer;
@@ -135,7 +137,7 @@ public class Order {
 		this.customer = doc.getString("customer");
 		this.date = doc.getDate("date");
 		this.totalPrice = doc.getDouble("totalPrice");
-		
+		this.id = doc.get("_id").toString();
 		//this.pizzas = pizzas;
 		@SuppressWarnings("unchecked")
 		List<Document> pizzaDocs = doc.get("pizzas", List.class);
@@ -184,6 +186,10 @@ public class Order {
 		this.status = Status.placed;
 	}
 
+	public String getId() {
+		return this.id;
+	}
+	
 	public String getCustomer() {
 		return customer;
 	}
@@ -267,6 +273,7 @@ public class Order {
 	
 	public Document toDocument() {
 		Document doc = new Document("customer", customer)
+				.append("_id",id)
 				.append("date", date)
 				.append("totalPrice", totalPrice);
 		

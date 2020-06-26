@@ -348,6 +348,17 @@ public class API {
 		return mongo.insertDocument(new Order(json).toDocument(), Collection.Order);
 	}
 	
+	
+	
+	public static void modifyOrderStatus(Order order) {
+		System.out.println("modify order: "+order.getId());
+		//mongo.updateDocument("_id", order.getId(), new Document("status",order.getStatus().toString()), Collection.Order);
+		mongo.updateDocument("customer", "test@mau.se", new Document("status",order.getStatus().toString()), Collection.Order);
+		
+	}
+
+	
+	
 	public static List<Order> getOrders() {
 		ArrayList<Document> docs = mongo.getAllInCollection(Collection.Order);
 		
@@ -355,6 +366,8 @@ public class API {
 		
 		for (Document doc : docs) {
 			orders.add(new Order(doc));
+			System.out.println(doc);
+			
 		}
 		
 		return orders;

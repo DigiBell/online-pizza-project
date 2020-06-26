@@ -98,9 +98,13 @@ public class MongoDB {
 	}
 	
 	public void updateDocument(String key, String value, Document doc, Collection col) {
-		MongoCollection<Document> collection = database.getCollection(col.toString());
+		MongoCollection<Document> collection = database.getCollection(col.toString());		
 		UpdateResult result = collection.updateOne(eq(key, value), new Document("$set", doc));
+		System.out.println(result);
 	}
+	
+	
+	
 	
 	/**
 	 * Gets all the documents that are in the collection

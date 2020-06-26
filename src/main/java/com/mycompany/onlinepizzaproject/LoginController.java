@@ -32,6 +32,8 @@ public class LoginController  {
     @FXML
     private void initialize(){
         mainController = MainController.getMainControllerInstance();
+        text_email.setText("marta@gmail.com");
+        text_password.setText("marta");
     }
 
     /**
