@@ -1,14 +1,23 @@
 package com.mycompany.onlinepizzaproject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mycompany.onlinepizzaproject.backend.API;
+import com.mycompany.onlinepizzaproject.backend.Ingredient;
 import com.mycompany.onlinepizzaproject.backend.Pizza;
+
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jdk.nashorn.api.tree.ForInLoopTree;
 
 public class ManagerAddPizzaController {
 	@FXML private MainController mainController;
@@ -16,11 +25,38 @@ public class ManagerAddPizzaController {
 	@FXML private TextField pizza_description_sv_textfield;
 	@FXML private TextField pizza_description_en_textfield;
 	@FXML private TextField pizza_price_textfield;
+	@FXML private ChoiceBox<String> add_pizza_ingredients_choicebox = new ChoiceBox<String>();
+	@FXML private ChoiceBox<String> add_pizza_ingredient_amount_units_choicebox = new ChoiceBox<String>();
+	@FXML private TextField add_pizza_ingredient_amount_textfield;
+	@FXML private TextArea add_pizza_ingredients_textarea;
+	
+	
 	private Stage stage;
 	
 	 @FXML
 	 private void initialize(){
 	        mainController = MainController.getMainControllerInstance();
+	        add_pizza_ingredient_amount_units_choicebox.setItems(FXCollections.observableArrayList("Units", "g", "kg"));
+	        add_pizza_ingredient_amount_units_choicebox.getSelectionModel().selectFirst();
+	        
+	        add_pizza_ingredients_choicebox.setItems(FXCollections.observableArrayList("Select ingredient"));
+	        List<Ingredient> ingredients = API.getIngredients();
+	        List<String> ingredientNameList = new ArrayList<>();
+	        ingredientNameList.add("Select ingredient");
+	        for(Ingredient i: ingredients) {
+	        	ingredientNameList.add(i.getName());
+	        }
+	        add_pizza_ingredients_choicebox.setItems(FXCollections.observableArrayList(ingredientNameList));
+	        add_pizza_ingredients_choicebox.getSelectionModel().selectFirst();
+	 }
+	 
+	 @FXML
+	 private void addIngredient(ActionEvent event) {	
+		 //check if ingredient choosen correctly
+		 //check if amount is correct
+		 //check if units choosen correctly
+		 //show ingredient in textfield
+		 //
 	 }
 	
 	/**
