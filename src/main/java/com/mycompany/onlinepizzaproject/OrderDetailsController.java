@@ -2,6 +2,8 @@ package com.mycompany.onlinepizzaproject;
 
 import com.mycompany.onlinepizzaproject.backend.API;
 import com.mycompany.onlinepizzaproject.backend.Order;
+import com.mycompany.onlinepizzaproject.backend.Order.PizzaOrder;
+import com.mycompany.onlinepizzaproject.backend.Order.ProductOrder;
 import com.mycompany.onlinepizzaproject.backend.Order.Status;
 
 import javafx.collections.FXCollections;
@@ -29,8 +31,21 @@ public class OrderDetailsController {
         ObservableList<String> orderLines = FXCollections.observableArrayList();
         orderLines.add("Order id: " + order.getId());
         orderLines.add("Customer id: " + order.getCustomer());
-        orderLines.add("Pizzas: " + order.getPizzas());
-        orderLines.add("Products: " + order.getProducts());
+        
+        if(!order.getPizzas().isEmpty()) {
+        	orderLines.add("Pizzas: ");        	
+        	for (PizzaOrder po : order.getPizzas()) {
+				orderLines.add("\t" + po.toString());
+			}
+        }
+        
+        if(!order.getProducts().isEmpty()) {
+        	orderLines.add("Products: ");        	
+        	for (ProductOrder po : order.getProducts()) {
+				orderLines.add("\t" + po.toString());
+			}
+        }
+        
         orderLines.add("Comment: " + order.getComment());
         orderLines.add("Total price: " + order.getTotalPrice());
         orderLines.add("Status: " + order.getStatus());
@@ -52,8 +67,6 @@ public class OrderDetailsController {
     	case "Done":
     		this.order.setStatus(Status.done);
     		API.modifyOrderStatus(this.order);
-        	//delete from orders collection 
-        	//add to orders history collection
     		break;
     	case "Cancelled":
     		this.order.setStatus(Status.cancelled);

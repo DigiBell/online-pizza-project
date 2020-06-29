@@ -76,7 +76,7 @@ public class Order {
 		
 		@Override
 		public String toString() {
-			return "Pizza: " + pizzaName + " " + Pizza.getSizeString(size) + ". Amount: " + amount + ". Unit price: " + unitPrice;
+			return pizzaName + " " + Pizza.getSizeString(size) + ". Amount: " + amount + ". Unit price: " + unitPrice;
 		}
 	}
 	
@@ -127,7 +127,7 @@ public class Order {
 		
 		@Override
 		public String toString() {
-			return "Product: " + productName + ". Amount: " + amount + ". Unit price: " + unitPrice;
+			return productName + ". Amount: " + amount + ". Unit price: " + unitPrice;
 		}
 	}
 	

@@ -53,7 +53,7 @@ public class EmployeeOrderTabController {
     	LocalDate dateFrom = orders_from_date_picker.getValue();
         LocalDate dateTo = orders_to_date_picker.getValue();
         ordersTable.getItems().clear();        
-        ordersTable.getItems().addAll(API.getOrders());
+        ordersTable.getItems().addAll(API.getOpenOrders());
     }
     
     /**

@@ -1,8 +1,12 @@
 package com.mycompany.onlinepizzaproject;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 import com.mycompany.onlinepizzaproject.backend.API;
 import com.mycompany.onlinepizzaproject.backend.Order;
+import com.mycompany.onlinepizzaproject.backend.Order.Status;
 import com.mycompany.onlinepizzaproject.backend.Product;
 import com.mycompany.onlinepizzaproject.backend.Product.Category;
 
@@ -16,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -32,14 +37,14 @@ public class ManagerOrdersTabController {
     @FXML private TableColumn<Order, String> orders_status_column;
     @FXML private DatePicker orders_from_date_picker;
     @FXML private DatePicker orders_to_date_picker;
-    @FXML private ChoiceBox<String> orders_category_choicebox = new ChoiceBox<String>();
+    @FXML private ChoiceBox<Object> orders_category_choicebox = new ChoiceBox<Object>();
 
     
     @FXML
     private void initialize(){
         mainController = MainController.getMainControllerInstance();
         
-        orders_category_choicebox.setItems(FXCollections.observableArrayList("Select status", "All", "Placed", "In progress", "Done", "Cancelled"));	
+        orders_category_choicebox.setItems(FXCollections.observableArrayList("All", "Open", "Closed", new Separator(), "Placed", "In progress", "Done", "Cancelled"));	
         orders_category_choicebox.getSelectionModel().selectFirst();
 		 
         orders_order_id_column.setCellValueFactory(new PropertyValueFactory<>("Id"));
@@ -55,32 +60,84 @@ public class ManagerOrdersTabController {
      */
     @FXML
     private void show(ActionEvent event){//show orders
-        LocalDate dateFrom = orders_from_date_picker.getValue();
-        LocalDate dateTo = orders_to_date_picker.getValue();
+        LocalDate localDateFrom = orders_from_date_picker.getValue();
+        LocalDate localDateTo = orders_to_date_picker.getValue();
         ordersTable.getItems().clear();
-        ordersTable.getItems().addAll(API.getOrders());
+        //ordersTable.getItems().addAll(API.getOrders());
         String category = (String) orders_category_choicebox.getSelectionModel().getSelectedItem();
         
-        switch(category) {
-		case "Select status":
-			//do nothing
+        Date from = null;
+        Date to = null;
+        
+ 		if(localDateFrom != null) {
+ 			
+ 			from = Date.from(orders_from_date_picker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+ 			
+ 			if(localDateTo != null) {
+ 				to = Date.from(orders_to_date_picker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+ 			} else {
+ 				to = new Date();
+ 				orders_to_date_picker.setValue(to.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+ 			}         			
+ 		}
+        
+		switch (category) {
+		case "All":
+			if (from != null && to != null) {
+				ordersTable.getItems().addAll(API.getOrders(from, to));
+			} else {
+				ordersTable.getItems().addAll(API.getOrders());
+			}
 			break;
-     	case "All":
-     		ordersTable.getItems().addAll(API.getOrders());
-     		break;
-     	case "Placed":
-     		//ordersTable.getItems().addAll(API.getOrders(Status.placed));
-     		break;
-     	case "In progress":
-     		//ordersTable.getItems().addAll(API.getOrders(Status.inProgress));
+		case "Open":
+			if (from != null && to != null) {
+				ordersTable.getItems().addAll(API.getOpenOrders(from, to));
+			} else {
+				ordersTable.getItems().addAll(API.getOpenOrders());
+			}		
 			break;
-     	case "Done":
-     		//ordersTable.getItems().addAll(API.getOrders(Status.done));
-     		break;
-     	case "Cancelled":	
-     		//ordersTable.getItems().addAll(API.getOrders(Status.cancelled));
-     		break;
-        }
+		case "Closed":
+			if (from != null && to != null) {
+				ordersTable.getItems().addAll(API.getClosedOrders(from, to));
+			} else {
+				ordersTable.getItems().addAll(API.getClosedOrders());
+			}			
+			break;
+		case "Placed":
+			if (from != null && to != null) {
+				ordersTable.getItems().addAll(API.getOrders(Status.placed, from, to));
+			} else {
+				ordersTable.getItems().addAll(API.getOrders(Status.placed));
+			}		
+			break;
+		case "In progress":
+			if (from != null && to != null) {
+				ordersTable.getItems().addAll(API.getOrders(Status.inProgress, from, to));
+			} else {
+				ordersTable.getItems().addAll(API.getOrders(Status.inProgress));
+			}		
+			break;
+		case "Done":
+			if (from != null && to != null) {
+				ordersTable.getItems().addAll(API.getOrders(Status.done, from, to));
+			} else {
+				ordersTable.getItems().addAll(API.getOrders(Status.done));
+			}		
+			break;
+		case "Cancelled":
+			if (from != null && to != null) {
+				ordersTable.getItems().addAll(API.getOrders(Status.cancelled, from, to));
+			} else {
+				ordersTable.getItems().addAll(API.getOrders(Status.cancelled));
+			}		
+			break;
+		}
+    }
+    
+    @FXML
+    private void clearDates(ActionEvent event) {
+    	orders_from_date_picker.setValue(null);
+    	orders_to_date_picker.setValue(null);
     }
     
     /**

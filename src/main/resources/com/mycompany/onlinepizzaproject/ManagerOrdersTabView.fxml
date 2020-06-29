@@ -64,6 +64,10 @@
                     <HBox.margin>
                         <Insets top="25.0" />
                     </HBox.margin></DatePicker>
+                <Button fx:id="clear_dates_button" mnemonicParsing="false" onAction="#clearDates" prefHeight="30.0" prefWidth="100.0" text="Clear dates">
+                    <HBox.margin>
+                        <Insets left="25.0" top="25.0" />
+                    </HBox.margin></Button>
             </children>
         </HBox>
     </top>

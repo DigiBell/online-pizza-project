@@ -9,6 +9,7 @@ import com.mongodb.client.model.Indexes;
 import com.mongodb.client.MongoCollection;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.mongodb.client.MongoCursor;
@@ -20,6 +21,7 @@ import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -157,9 +159,32 @@ public class MongoDB {
 		return collection.find(eq(key, value)).first();
 	}
 	
+	public ArrayList<Document> findAll(Date from, Date to, Collection col) {		
+		MongoCollection<Document> collection = database.getCollection(col.toString());
+		Bson dateFilter = and( gte("date", from), lte("date", to) );
+		return collection.find(dateFilter).into(new ArrayList<Document>());	
+	}
+	
 	public ArrayList<Document> findAll(String key, String value, Collection col) {		
 		MongoCollection<Document> collection = database.getCollection(col.toString());
 		return collection.find(eq(key, value)).into(new ArrayList<Document>());	
+	}
+	
+	public ArrayList<Document> findAll(String key, String value, Date from, Date to, Collection col) {		
+		MongoCollection<Document> collection = database.getCollection(col.toString());
+		Bson dateFilter = and( gte("date", from), lte("date", to) );
+		return collection.find(and(eq(key, value), dateFilter)).into(new ArrayList<Document>());	
+	}
+	
+	public ArrayList<Document> findAll(Bson filter, Collection col) {		
+		MongoCollection<Document> collection = database.getCollection(col.toString());
+		return collection.find(filter).into(new ArrayList<Document>());	
+	}
+	
+	public ArrayList<Document> findAll(Bson filter, Date from, Date to, Collection col) {		
+		MongoCollection<Document> collection = database.getCollection(col.toString());
+		Bson dateFilter = and( gte("date", from), lte("date", to) );
+		return collection.find(and(filter, dateFilter)).into(new ArrayList<Document>());
 	}
 	
 	public ArrayList<String> findAllJSON(String key, String value, Collection col){		

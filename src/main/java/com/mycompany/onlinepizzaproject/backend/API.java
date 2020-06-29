@@ -1,14 +1,19 @@
 package com.mycompany.onlinepizzaproject.backend;
 
+import static com.mongodb.client.model.Filters.*;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.mycompany.onlinepizzaproject.backend.MongoDB.Collection;
 import com.mycompany.onlinepizzaproject.backend.Order.PizzaOrder;
 import com.mycompany.onlinepizzaproject.backend.Order.ProductOrder;
+import com.mycompany.onlinepizzaproject.backend.Order.Status;
 import com.mycompany.onlinepizzaproject.backend.Product.Category;
 import com.mycompany.onlinepizzaproject.backend.User.AccessLevel;
 
@@ -195,6 +200,7 @@ public class API {
 		mongo.updateDocument("name", pizza.getName(), new Document("price30cm", newPrice), Collection.Pizza);
 	}
 	
+	
 	// ****************
 	// ** Ingredient **
 	// ****************
@@ -252,6 +258,7 @@ public class API {
 	public static void updateIngredient(Ingredient ingredient) {
 		mongo.updateDocument("name", ingredient.getName(), new Document("stock", ingredient.getStock().toString()), Collection.Ingredient);
 	}
+	
 	
 	// *************
 	// ** Product **
@@ -358,6 +365,7 @@ public class API {
 		mongo.updateDocument("name", product.getName(), new Document("price", newPrice).append("stock", newStock), Collection.Product);
 	}
 	
+	
 	// ***********
 	// ** Order **
 	// ***********
@@ -388,6 +396,94 @@ public class API {
 		return orders;
 	}
 	
+	public static List<Order> getOrders(Date from, Date to) {
+		ArrayList<Document> docs = mongo.findAll(from, to, Collection.Order);
+		
+		ArrayList<Order> orders = new ArrayList<Order>();
+		
+		for (Document doc : docs) {
+			orders.add(new Order(doc));			
+		}
+		
+		return orders;
+	}
+	
+	public static List<Order> getOrders(Status status) {
+		ArrayList<Document> docs = mongo.findAll("status", status.toString(), Collection.Order);
+
+		List<Order> orders = new ArrayList<Order>();
+		
+		for (Document doc : docs) {
+			orders.add(new Order(doc));
+		}
+		
+		return orders;
+	}
+	
+	public static List<Order> getOrders(Status status, Date from, Date to) {
+		ArrayList<Document> docs = mongo.findAll("status", status.toString(), from, to, Collection.Order);
+
+		List<Order> orders = new ArrayList<Order>();
+		
+		for (Document doc : docs) {
+			orders.add(new Order(doc));
+		}
+		
+		return orders;
+	}
+	
+	public static List<Order> getOpenOrders() {
+		Bson filter = or(eq("status", Status.placed.toString()), eq("status", Status.inProgress.toString()));
+		ArrayList<Document> docs = mongo.findAll(filter, Collection.Order);
+
+		List<Order> orders = new ArrayList<Order>();
+		
+		for (Document doc : docs) {
+			orders.add(new Order(doc));
+		}
+		
+		return orders;
+	}
+	
+	public static List<Order> getOpenOrders(Date from, Date to) {
+		Bson filter = or(eq("status", Status.placed.toString()), eq("status", Status.inProgress.toString()));
+		ArrayList<Document> docs = mongo.findAll(filter, from, to, Collection.Order);
+
+		List<Order> orders = new ArrayList<Order>();
+		
+		for (Document doc : docs) {
+			orders.add(new Order(doc));
+		}
+		
+		return orders;
+	}
+	
+	public static List<Order> getClosedOrders() {
+		Bson filter = or(eq("status", Status.done.toString()), eq("status", Status.cancelled.toString()));
+		ArrayList<Document> docs = mongo.findAll(filter, Collection.Order);
+
+		List<Order> orders = new ArrayList<Order>();
+		
+		for (Document doc : docs) {
+			orders.add(new Order(doc));
+		}
+		
+		return orders;
+	}
+	
+	public static List<Order> getClosedOrders(Date from, Date to) {
+		Bson filter = or(eq("status", Status.done.toString()), eq("status", Status.cancelled.toString()));
+		ArrayList<Document> docs = mongo.findAll(filter, from, to, Collection.Order);
+
+		List<Order> orders = new ArrayList<Order>();
+		
+		for (Document doc : docs) {
+			orders.add(new Order(doc));
+		}
+		
+		return orders;
+	}
+	
 	public static List<Order> getOrders(String customer) {
 		ArrayList<Document> docs = mongo.findAll("customer", customer, Collection.Order);
 		
@@ -403,5 +499,7 @@ public class API {
 	public static ArrayList<String> getOrdersJSON(String customer){
 		return mongo.findAllJSON("customer", customer, Collection.Order);
 	}
+	
+
 	
 }
