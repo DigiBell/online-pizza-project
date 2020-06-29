@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 // SINGLETON
 public class MainController {
     public final static int MAIN_STAGE_HEIGHT = 700;
-    public final static int MAIN_STAGE_WIDTH = 900;
+    public final static int MAIN_STAGE_WIDTH = 1000;
     public final static String CUSTOMER_ACCESS_LEVEL = "customer";
     public final static String EMPLOYEE_ACCESS_LEVEL = "employee";
     public final static String MANAGER_ACCESS_LEVEL = "manager";

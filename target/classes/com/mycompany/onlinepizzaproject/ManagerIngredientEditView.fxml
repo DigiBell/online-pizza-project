@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.ChoiceBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.onlinepizzaproject.ManagerIngredientEditController">
    <top>
@@ -27,6 +28,11 @@
          <children>
             <Label text="New quantity" />
             <TextField fx:id="ingredient_edit_quantity_field" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="measurement_unit_choicebox" GridPane.columnIndex="2">
+              <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </ChoiceBox>
          </children>
          <opaqueInsets>
             <Insets />
