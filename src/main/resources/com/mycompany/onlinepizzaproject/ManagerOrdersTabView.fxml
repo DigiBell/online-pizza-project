@@ -18,7 +18,7 @@
                 <TableColumn fx:id="orders_date_column" prefWidth="80.0" text="Date" />
                 <TableColumn fx:id="orders_user_email_column" prefWidth="50.0" text="User email" />
                 <TableColumn fx:id="orders_total_price_column" prefWidth="50.0" text="Total price(SEK)" />
-                <TableColumn fx:id="orders_status_column" prefWidth="500.0" text="Status" />
+                <TableColumn fx:id="orders_status_column" prefWidth="50.0" text="Status" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
