@@ -58,15 +58,15 @@
                   </ChoiceBox>
                </children>
             </HBox>
-            <TextArea fx:id="add_pizza_ingredients_textarea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextArea fx:id="add_pizza_ingredients_textarea" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <Button fx:id="add_pizza_add_ingredient_button" mnemonicParsing="false" text="Add">
+                  <Button fx:id="add_pizza_add_ingredient_button" mnemonicParsing="false" onAction="#addIngredient" text="Add">
                      <HBox.margin>
                         <Insets left="25.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="add_pizza_clear_ingredients_button" mnemonicParsing="false" text="Clear">
+                  <Button fx:id="add_pizza_clear_ingredients_button" mnemonicParsing="false" onAction="#clearIngredient" text="Clear">
                      <HBox.margin>
                         <Insets left="50.0" top="5.0" />
                      </HBox.margin>
