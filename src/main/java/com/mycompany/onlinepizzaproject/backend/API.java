@@ -2,9 +2,13 @@ package com.mycompany.onlinepizzaproject.backend;
 
 import static com.mongodb.client.model.Filters.*;
 
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -500,6 +504,43 @@ public class API {
 		return mongo.findAllJSON("customer", customer, Collection.Order);
 	}
 	
-
 	
+	public static List<String> getTopSales() {
+		return countTopSales(API.getOrders(Status.done));
+	}
+	
+	public static List<String> getTopSales(Date from, Date to){
+		return countTopSales(API.getOrders(Status.done, from, to));
+	}
+	
+	private static List<String> countTopSales(List<Order> orders) {
+		HashMap<String, Integer> top = new HashMap<String, Integer>();
+		
+		for (Order order : orders) {
+			
+			for (PizzaOrder pizzaOrder : order.getPizzas()) {
+				String name = pizzaOrder.pizzaName;
+				int count = top.containsKey(name) ? top.get(name) : 0;
+				top.put(name, count + pizzaOrder.amount);
+			}
+			
+			for (ProductOrder productOrder : order.getProducts()) {
+				String name = productOrder.productName;
+				int count = top.containsKey(name) ? top.get(name) : 0;
+				top.put(name, count + productOrder.amount);
+			}
+			
+		}
+		
+		List<String> topList = new ArrayList<>();
+		
+		for (Entry<String, Integer> entry : top.entrySet()) {
+			topList.add(entry.getValue() + " : " + entry.getKey());
+		}
+		
+		topList.sort(Comparator.comparing(s -> Integer.valueOf(s.substring(0, s.indexOf(' '))), Comparator.reverseOrder()));
+		
+		return topList;
+	}
+		
 }

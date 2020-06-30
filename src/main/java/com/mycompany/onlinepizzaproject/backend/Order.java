@@ -6,7 +6,6 @@ import java.util.List;
 import org.bson.Document;
 import com.mycompany.onlinepizzaproject.backend.Pizza.Size;
 
-
 public class Order {
 	
 	public enum Status{
@@ -29,8 +28,7 @@ public class Order {
 			this.unitPrice = pizza.getPriceForSize(size);
 		}
 		
-		public PizzaOrder(Document doc, boolean getPizza) {
-			
+		public PizzaOrder(Document doc, boolean getPizza) {		
 			this.pizzaName = doc.getString("pizza");
 			this.size = Pizza.getSizeFromString(doc.getString("size"));
 			this.amount = doc.getInteger("amount");
@@ -49,24 +47,6 @@ public class Order {
 					// OLD Order. Ignore exception. 
 				}
 			}
-			
-//			try {
-//				this.pizzaName = API.getPizza(doc.getString("pizza"));
-//			} catch (Exception e) {
-//				//e.printStackTrace();
-//				// This pizza no longer exists
-//				this.pizzaName = new Pizza(doc.getString("pizza"), 0, 0, 0, "", "");
-//			}
-
-//			this.pizzaName = doc.getString("pizza");
-//			this.size = Pizza.getSizeFromString(doc.getString("size"));
-//			this.amount = doc.getInteger("amount");
-//			
-//			try {
-//				this.unitPrice = doc.getInteger("unitPrice");
-//			} catch (NullPointerException e) {
-//				// OLD Order. Ignore exception. 
-//			}
 			
 		}
 		
@@ -92,13 +72,6 @@ public class Order {
 		}
 		
 		public ProductOrder(Document doc, boolean getProduct) {
-//			try {
-//				this.productName = API.getProduct(doc.getString("product"));
-//			} catch (Exception e) {
-//				//e.printStackTrace();
-//				// Product does not exist
-//				this.productName = new Product(doc.getString("product"), null, 0, 0);
-//			}
 			this.productName = doc.getString("product");
 			this.amount = doc.getInteger("amount");
 			
@@ -115,9 +88,7 @@ public class Order {
 				} catch (NullPointerException e) {
 					// OLD Order. Ignore exception. 
 				}
-			}
-			
-				
+			}	
 			
 		}
 		
