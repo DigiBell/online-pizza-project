@@ -7,7 +7,7 @@ public class Product {
 	public enum Category{
 		iceCream,
 		beverage,
-		sause,
+		sauce,
 		sideDish
 	}
 	

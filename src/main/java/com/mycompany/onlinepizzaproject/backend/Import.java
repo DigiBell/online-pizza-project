@@ -15,7 +15,6 @@ import com.mycompany.onlinepizzaproject.backend.Product.Category;
 
 public class Import {
 
-	
 	private static List<String> getLines(String file) {
 		List<String> lines = null;
 		
@@ -103,8 +102,36 @@ public class Import {
 		System.out.println("PIZZAS AND INGREDIENTS IMPORTED");
 	}
 	
-	public static void importBeverages() {
-		List<String> lines = getLines("beverages.txt");
+	public static void products() {
+		System.out.println("IMPORTING PRODUCTS");
+		beverage();
+		iceCream();
+		sauce();
+		sideDish();
+	}
+	
+	public static void beverage() {
+		importProducts(Category.beverage);
+		System.out.println("BEVERAGES IMPORTED");
+	}
+	
+	public static void iceCream() {
+		importProducts(Category.iceCream);
+		System.out.println("ICECREAM IMPORTED");
+	}
+	
+	public static void sauce() {
+		importProducts(Category.sauce);
+		System.out.println("SAUCE IMPORTED");
+	}
+	
+	public static void sideDish() {
+		importProducts(Category.sideDish);
+		System.out.println("SIDEDISH IMPORTED");
+	}
+	
+	private static void importProducts(Category category) {
+		List<String> lines = getLines(category.toString() + ".txt");
 		
 		int counter = 0;
 		
@@ -116,18 +143,19 @@ public class Import {
 		Random random = new Random();
 		
 		for (String line : lines) {
-			System.out.println("counter: " + counter);
 			switch (counter) {
 			case 0:
-				name = line;
+				if(category == Category.iceCream) {
+					name = "Ben and Jerry's " + line;
+				} else {
+					name = line;
+				}			
 				break;
-			case 2:
-				price = Integer.parseInt(line.substring(0, line.indexOf(':')));
+			case 1:
+				price = Integer.parseInt(line);
 				
-				Product p = new Product(name, Category.beverage, price, random.nextInt(90)+10);
-				
-				System.out.println(p.toDocument().toJson());
-				
+				Product p = new Product(name, category, price, random.nextInt(95)+5);
+								
 				products.add(p.toDocument());
 				
 				counter = -1;

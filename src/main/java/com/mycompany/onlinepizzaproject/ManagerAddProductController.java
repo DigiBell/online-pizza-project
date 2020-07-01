@@ -25,7 +25,7 @@ public class ManagerAddProductController {
 	@FXML
 	 private void initialize(){
 		 mainController = MainController.getMainControllerInstance();
-		 product_category_choicebox.setItems(FXCollections.observableArrayList("Select category", "Beverage", "Ice-cream", "Sause", "Side dish"));	
+		 product_category_choicebox.setItems(FXCollections.observableArrayList("Select category", "Beverage", "Ice-cream", "Sauce", "Side dish"));	
 		 product_category_choicebox.getSelectionModel().selectFirst();
 	 }
 	 
@@ -71,8 +71,8 @@ public class ManagerAddProductController {
 		            alert.showAndWait();
 				}
 	     		break;
-	     	case "Sause":
-	     		product = new Product(name, Category.sause, intPrice, intQuantity);
+	     	case "Sauce":
+	     		product = new Product(name, Category.sauce, intPrice, intQuantity);
 	     		try {
 					System.out.println("category: " + category);		
 					API.addProduct(product);

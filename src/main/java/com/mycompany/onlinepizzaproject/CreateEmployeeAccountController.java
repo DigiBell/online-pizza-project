@@ -1,10 +1,8 @@
 package com.mycompany.onlinepizzaproject;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,20 +40,11 @@ public class CreateEmployeeAccountController {
     private void initialize(){
         mainController = MainController.getMainControllerInstance();
         
-        File file = new File("C:\\Users\\akira\\eclipse-workspace\\online-pizza-project\\text\\countries.txt");
-        BufferedReader br;
         List<String> countries = new ArrayList<>();
-        countries.add("Select country");
-		try {
-			br = new BufferedReader(new FileReader(file));
-			String str;
-	        while ((str = br.readLine()) != null){
-	        	System.out.println(str);
-	        	countries.add(str);
-	        }
-	        br.close();
+        
+        try {
+			countries = Files.readAllLines(Paths.get("./text/countries.txt"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
        

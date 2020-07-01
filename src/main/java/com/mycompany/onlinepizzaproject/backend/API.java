@@ -2,9 +2,8 @@ package com.mycompany.onlinepizzaproject.backend;
 
 import static com.mongodb.client.model.Filters.*;
 
-import java.text.Collator;
 import java.util.ArrayList;
-import java.util.Collections;import java.util.Comparator;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +38,8 @@ public class API {
 		mongo.dropCollection(Collection.Pizza);
 		mongo.dropCollection(Collection.Ingredient);
 		Import.pizzasAndIngredients();
+		mongo.dropCollection(Collection.Product);
+		Import.products();
 	}
 	
 	/**
@@ -345,12 +346,8 @@ public class API {
 		return products;
 	}
 	
-	public static void addProducts(List<Document> products) {
-		System.out.println("Products: " + products.size());
-		
-		int i = mongo.insertManyDocuments(products, Collection.Product);
-		
-		System.out.println("inserted: " + i);
+	public static void addProducts(List<Document> products) {		
+		mongo.insertManyDocuments(products, Collection.Product);
 	}
 	
 	public static void deleteProduct(Product product) {

@@ -37,7 +37,7 @@ public class ManagerProductsTabController {
     @FXML
     private void initialize(){
         mainController = MainController.getMainControllerInstance();
-        product_category_choicebox.setItems(FXCollections.observableArrayList("Select category", "Beverage", "Ice-cream", "Sause", "Side dish"));
+        product_category_choicebox.setItems(FXCollections.observableArrayList("Select category", "Beverage", "Ice-cream", "Sauce", "Side dish"));
         product_category_choicebox.getSelectionModel().selectFirst();
         // products_product_id_column.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
         products_category_column.setCellValueFactory(new PropertyValueFactory<>("Category"));
@@ -118,15 +118,15 @@ public class ManagerProductsTabController {
 				productsTable.getItems().addAll(API.getProducts(Category.iceCream));
 			}
 			break;
-		case "Sause":
+		case "Sauce":
 			if (!name.trim().isEmpty()) {
 				// Find product by name and category
 				productsTable.getItems().clear();
-				productsTable.getItems().addAll(API.searchProducts(name, Category.sause));
+				productsTable.getItems().addAll(API.searchProducts(name, Category.sauce));
 			} else {
 				// Find products by category
 				productsTable.getItems().clear();
-				productsTable.getItems().addAll(API.getProducts(Category.sause));
+				productsTable.getItems().addAll(API.getProducts(Category.sauce));
 			}
 			break;
 		case "Side dish":
